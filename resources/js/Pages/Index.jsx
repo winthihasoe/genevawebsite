@@ -1,9 +1,9 @@
 import { Head } from "@inertiajs/inertia-react";
-import { Grid, Paper, styled } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import {  Container } from "@mui/system";
 import * as React from "react";
 import Navbar from "../Components/Navbar";
 import Hero from "@/Components/Hero";
+import OurServices from "@/Components/OurServices";
  
 
 export default function Index() {
@@ -13,6 +13,7 @@ export default function Index() {
             <Navbar />
             <Hero />
             <Container>
+                <OurServices />
             </Container>
         </div>
     );

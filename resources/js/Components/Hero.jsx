@@ -15,7 +15,7 @@ const style = {
         backgroundImage: `url(${Image})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        height: '450px',
+        height: '500px',
         width: '100%',
     }
 }
