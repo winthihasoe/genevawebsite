@@ -49,7 +49,7 @@ function DrawerAppBar(props) {
 
     return (
         <Box>
-            <AppBar sx={{backgroundColor: 'purple'}}>
+            <AppBar sx={{backgroundColor: 'purple'}} position="relative" >
                 <Toolbar>
                     <IconButton
                         color="inherit"

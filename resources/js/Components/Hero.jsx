@@ -29,7 +29,7 @@ export default function Hero() {
         <>
             <div style={style.paperContainer}>
                 <Grid container sx={{ maxWidth:900, margin: 'auto'}} >
-                    <Grid item xs={12} sm={8} md={4} xl={4} sx={{marginTop : 7, padding: 6}} >
+                    <Grid item xs={12} sm={6} md={5} lg={5} xl={5} sx={{marginTop : 7, padding: 6}} >
                         <Paper sx={{padding: '50px 20px'}} >
                             <Typography variant="h6" gutterBottom>Find Your Caregiver</Typography>
                             <form>
