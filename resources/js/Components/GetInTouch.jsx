@@ -13,9 +13,9 @@ export default function GetInTouch() {
         resason: ''
     })
   return (
-    <Box sx={{paddingBottom: 5}} id="contact">
+    <Box sx={{paddingTop: 8, paddingBottom: 8}} id="contact">
         <Box>
-            <Typography variant='h3' textAlign='center' sx={{padding: 8}}>
+            <Typography variant='h3' textAlign='center'>
                 Get in touch with us
             </Typography>
         </Box>

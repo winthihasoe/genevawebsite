@@ -4,7 +4,7 @@ import React from 'react'
 export default function AboutCompany() {
   return (
         <>
-        <Box sx={{padding: 8}} id="about">
+        <Box sx={{paddingTop: 8, paddingBottom: 8}} id="about">
             <Box sx={{margin: 1}} textAlign='center'>
                 <Typography variant='overline' gutterBottom>
                     about company

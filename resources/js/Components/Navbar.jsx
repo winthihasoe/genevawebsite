@@ -28,8 +28,8 @@ function DrawerAppBar(props) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                Geneva
+            <Typography variant="h6" sx={{ my: 1 }}>
+                <Button sx={{ color: "#000" }} href="#home">Geneva</Button>
             </Typography>
             <Divider />
             <List>
