@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import { CssBaseline } from "@mui/material";
 
 const drawerWidth = 240;
-const navItems = [ "Service", "Training", "Contact"];
+const navItems = ["Service", "Training",  "About", "Contact"];
 
 function DrawerAppBar(props) {
     const { window } = props;
@@ -35,7 +35,7 @@ function DrawerAppBar(props) {
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: "center" }}>
+                        <ListItemButton sx={{ textAlign: "center" }} href={`#${item.toLowerCase()}`}>
                             <ListItemText primary={item} />
                         </ListItemButton>
                     </ListItem>
@@ -48,8 +48,8 @@ function DrawerAppBar(props) {
         window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box>
-            <AppBar sx={{backgroundColor: 'purple'}} position="relative" >
+        <Box sx={{display: 'block'}}>
+            <AppBar sx={{backgroundColor: 'purple'}}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -62,17 +62,17 @@ function DrawerAppBar(props) {
                     </IconButton>
                     <Typography
                         variant="h6"
-                        component="div"
                         sx={{
                             flexGrow: 1,
                             display: { xs: "none", sm: "block" },
                         }}
                     >
-                        Geneva
+                        <Button sx={{ color: "#fff" }} href="#home">Geneva</Button>
+                        
                     </Typography>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navItems.map((item) => (
-                            <Button key={item} sx={{ color: "#fff", marginRight: 4 }}>
+                            <Button href={`#${item.toLowerCase()}`} key={item} sx={{ color: "#fff", marginRight: 4 }}>
                                 {item}
                             </Button>
                         ))}
@@ -99,7 +99,7 @@ function DrawerAppBar(props) {
                     {drawer}
                 </Drawer>
             </Box>
-            
+            <Toolbar />
         </Box>
     );
 }

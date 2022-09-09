@@ -1,21 +1,22 @@
-import { Grid, styled, Typography } from '@mui/material'
+import { CardActionArea, CardMedia, Grid, styled, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 
 const Item = styled(Box)(({theme})=>({
-  backgroundColor: 'Yellow',
+  backgroundColor: '#FBF8F1',
   padding: 30,
   borderRadius: '50%',
   textAlign: 'center',
   margin: 'auto',
-  width: 120,
-  height: 120
+  width: 180,
+  height: 180,
+  overflow: 'hidden'
 }))
 
 export default function OurServices() {
   return (
-    <Box sx={{marginBottom: 5}}>
-        <Box sx={{margin: 6}} textAlign='center'>
+    <Box sx={{marginBottom: 5, padding: 8}} id='service'>
+        <Box textAlign='center' gutterBottom>
             <Typography variant='h4' gutterBottom sx={{}}>
                 OUR SERVICES
             </Typography>
@@ -27,16 +28,75 @@ export default function OurServices() {
 
         <Grid container spacing={4} justifyContent="center">
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            <Item>Child Care</Item>
+            <CardActionArea>
+              <Item component="button">
+             
+                <CardMedia
+                        component="img"
+                        sx={{
+                          maxWidth: '70%',
+                          height: 'auto',
+                          margin: 'auto',
+                        }}
+                        image={'/images/services/child_care.png'}
+                        alt='child care'
+                /> 
+                <Typography component='div' variant='h6'>
+                  Child Care
+                </Typography>
+              </Item>
+            </CardActionArea>
+            
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            <Item>Elder Care</Item>
+            <Item>
+              <CardMedia
+                    component="img"
+                    sx={{
+                      maxWidth: '70%',
+                      height: 'auto',
+                      margin: 'auto',
+                    }}
+                    image={'/images/services/elder_care.png'}
+                    alt='elder care'
+            /> 
+            <Typography component='div' variant='h6'>
+              Elder Care
+            </Typography></Item>
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            <Item>Hospitalized Patient Care</Item>
+            <Item>
+            <CardMedia
+                    component="img"
+                    sx={{
+                      maxWidth: '70%',
+                      height: 'auto',
+                      margin: 'auto',
+                    }}
+                    image={'/images/services/hospital_care.png'}
+                    alt='hospital care'
+            /> 
+            <Typography component='div' variant='h6'>
+              Hospitalized Care
+            </Typography>
+            </Item>
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            <Item>Trip Care Plan</Item>
+            <Item>
+            <CardMedia
+                    component="img"
+                    sx={{
+                      maxWidth: '70%',
+                      height: 'auto',
+                      margin: 'auto',
+                    }}
+                    image={'/images/services/trip_care.png'}
+                    alt='trip care'
+            /> 
+            <Typography component='div' variant='h6'>
+              Trip Care Plan
+            </Typography>
+            </Item>
           </Grid>
         </Grid>
     </Box>
