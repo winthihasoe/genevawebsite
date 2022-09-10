@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCaregiverRequest;
 use App\Http\Requests\UpdateCaregiverRequest;
 use App\Models\Caregiver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class CaregiverController extends Controller
@@ -54,9 +55,11 @@ class CaregiverController extends Controller
             'weight'=>$request->weight,
             'height'=>$request->height,
             'address'=>$request->address,
+            'location'=>$request->location,
             'phone'=>$request->phone,
             'join_date'=>$request->join_date,
             'level'=>$request->level,
+            'care'=>$request->care,
             'skills'=>$request->skills,
             'image'=>$image_name,
             'rating'=>$request->rating,
@@ -64,6 +67,22 @@ class CaregiverController extends Controller
         ]);
        
         return redirect('/admin/caregivers')->with('message', "Caregiver created sucessfully");
+    }
+
+
+    public function showDesiredCg(Request $request)
+    {
+        $request->validate([
+            'location'=>'required',
+            'care'=>'required'
+        ]);
+
+        // Choosing caregiver according to Location and Field of care from caregiver table
+        $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
+            dd($desiredCaregivers);
+        // return Inertia::render('ChooseCaregiver', [
+        //     'desiredCaregivers'=> $desiredCaregivers
+        // ]);
     }
 
     /**
@@ -75,6 +94,8 @@ class CaregiverController extends Controller
     public function show(Caregiver $caregiver)
     {
         //
+
+
     }
 
     /**

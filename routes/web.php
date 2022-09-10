@@ -27,6 +27,8 @@ Route::get('/child-care/choose-caregiver', function (){
     return Inertia::render('ChooseCaregiver');
 });
 
+Route::post('/show-caregivers', [CaregiverController::class, 'showDesiredCg']);
+
 Route::prefix('admin')->group(function(){
     Route::get('/create-caregiver', [CaregiverController::class, 'create'])->name('createCaregiver');
     Route::post('/create-caregiver', [CaregiverController::class, 'store']);

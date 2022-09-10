@@ -16,9 +16,11 @@ class CreateCaregiversTable extends Migration
             $table->integer('weight');
             $table->integer('height');
             $table->string('address');
+            $table->string('location');
             $table->string('phone');
             $table->string('join_date')->nullable();
             $table->string('level');
+            $table->string('care');
             $table->string('skills');
             $table->string('image');
             $table->tinyInteger('rating')->nullable();

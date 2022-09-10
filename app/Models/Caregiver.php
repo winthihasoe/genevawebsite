@@ -15,7 +15,8 @@ class Caregiver extends Model
         'age',
         'weight',
         'height',
-        'address',
+        'address',        
+        'location',
         'phone',
         'join_date',
         'level',
@@ -23,6 +24,7 @@ class Caregiver extends Model
         'image',
         'rating',
         'review',
+        'care',
     ];
 
     public function skill (){

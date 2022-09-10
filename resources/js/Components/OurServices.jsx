@@ -1,4 +1,4 @@
-import { CardActionArea, CardMedia, Grid, styled, Typography } from '@mui/material'
+import { Card, CardActionArea, CardMedia, Grid, styled, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 
@@ -28,9 +28,10 @@ export default function OurServices() {
 
         <Grid container spacing={4} justifyContent="center">
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            <CardActionArea>
+            
               <Item component="button">
-             
+                <Card>
+             <CardActionArea>
                 <CardMedia
                         component="img"
                         sx={{
@@ -44,8 +45,10 @@ export default function OurServices() {
                 <Typography component='div' variant='h6'>
                   Child Care
                 </Typography>
+                </CardActionArea>
+                </Card>
               </Item>
-            </CardActionArea>
+            
             
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>

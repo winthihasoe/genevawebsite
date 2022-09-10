@@ -7,7 +7,7 @@ import { Link, useForm } from "@inertiajs/inertia-react";
 import Input from "./Input";
 import Label from "./Label";
 import Image from '../../../public/images/cover.jpg'
-import { Typography } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import Button from "./Button";
 
 const style = {
@@ -23,8 +23,19 @@ const style = {
 export default function Hero() {
     const { data, setData, post, processing, errors, reset } = useForm({
         location: "",
-        service: "",
+        care: "",
     });
+
+    const handleChange = (e) =>{
+        e.preventDefault();
+        const { name, value } = e.target;
+        setData({ ...data, [name]: value });
+    }
+
+    const handleSubmit =e => {
+        e.preventDefault();
+        post('/show-caregivers', data)
+    }
     return (
         <>
             <div style={style.paperContainer} id="home">
@@ -32,25 +43,45 @@ export default function Hero() {
                     <Grid item xs={12} sm={6} md={5} lg={5} xl={5} sx={{marginTop : 7, padding: 6}} >
                         <Paper sx={{padding: '50px 20px'}} >
                             <Typography variant="h6" gutterBottom>Find Your Caregiver</Typography>
-                            <form>
-                                <div className="mb-4">
-                                    <Label forInput="location" value="Where are you located?" />
-                                    <Input 
-                                        type="text"
-                                        name="email"
-                                        className="mt-1 block w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <Label forInput="service" value="Choose a Service" />
-                                    <Input 
-                                        type="text"
-                                        name="service"
-                                        className="mt-1 block w-full"
-                                    />
-                                </div>
+                            <form onSubmit={handleSubmit}>
+                                <Box sx={{ minWidth: 200, marginBottom: 2 }}>
+                                    <Label forInput="service" value="Where are you located?"/>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">City</InputLabel>
+                                        <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        label="City"
+                                        value={data.location}
+                                        onChange={handleChange}
+                                        name='location'
+                                        >
+                                        <MenuItem value={'ygn'}>Yangon</MenuItem>
+                                        <MenuItem value={'mdy'}>Mandalay</MenuItem>
+                                        <MenuItem value={'mkn'}>Myitkyinar</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>
+                                <Box sx={{ minWidth: 200,  marginBottom: 2 }}>
+                                    <Label forInput="service" value="Select your service"/>
+                                    <FormControl fullWidth>
+                                        
+                                        <InputLabel id="demo-simple-select-label">Service</InputLabel>
+                                        <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        label="Service"
+                                        value={data.care}
+                                        onChange={handleChange}
+                                        name='care'
+                                        >
+                                        <MenuItem value={'baby'}>Baby Care</MenuItem>
+                                        <MenuItem value={'elder'}>Elder Care</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>
                                 <Box textAlign='center' sx={{marginTop: 2}}>
-                                    <Button processing={processing}>Get care now</Button>
+                                    <Button processing={processing} type='submit'>Get care now</Button>
                                 </Box>
                             </form>
                         </Paper>

@@ -37,6 +37,8 @@ export default function CreateCaregiver(props) {
         level: "",
         join_date: "",
         image: null,
+        location: "",
+        care: ""
     });
 
     function handleChange(event) {
@@ -89,7 +91,7 @@ export default function CreateCaregiver(props) {
                         flexWrap: "wrap",
                     }}
                 >
-                    <form onSubmit={handleSubmit} encType="multipart/form-data">
+                    <form onSubmit={handleSubmit} encType="multipart/form-da?location=mdy&service=elderta">
                         <Box
                             sx={{
                                 p: 2,
@@ -140,6 +142,21 @@ export default function CreateCaregiver(props) {
                                 value={data.address}
                                 onChange={handleChange}
                             />
+                            
+                            <InputLabel id="city">Select City</InputLabel>
+                            <Select
+                                labelId="city"
+                                id="city"
+                                value={data.location}
+                                label="Select City"
+                                name="location"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={"ygn"}>Yangon</MenuItem>
+                                <MenuItem value={"mdy"}>Mandalay</MenuItem>
+                                <MenuItem value={"mkn"}>Myitkyina</MenuItem>
+                            </Select>
+
                             <TextField
                                 label="Phone"
                                 name="phone"
@@ -197,6 +214,19 @@ export default function CreateCaregiver(props) {
                             </Stack>
                         </Box>
                         <FormGroup>
+                            <InputLabel id="level">Field of Care</InputLabel>
+                            <Select
+                                labelId="level"
+                                id="care"
+                                value={data.care}
+                                label="Select Care"
+                                name="care"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={"child"}>Child Care</MenuItem>
+                                <MenuItem value={"elder"}>Elder Care</MenuItem>
+                                <MenuItem value={"elder_child"}>Elder Care & Child Care</MenuItem>
+                            </Select>
                             <FormControlLabel
                                 value="personal grooming"
                                 control={
