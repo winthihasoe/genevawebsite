@@ -61,6 +61,7 @@ export default function Hero() {
                                         <MenuItem value={'mkn'}>Myitkyinar</MenuItem>
                                         </Select>
                                     </FormControl>
+                                    {errors.location && <div>{errors.location}</div>}
                                 </Box>
                                 <Box sx={{ minWidth: 200,  marginBottom: 2 }}>
                                     <Label forInput="service" value="Select your service"/>
@@ -79,6 +80,7 @@ export default function Hero() {
                                         <MenuItem value={'elder'}>Elder Care</MenuItem>
                                         </Select>
                                     </FormControl>
+                                    {errors.care && <div>{errors.care}</div>}
                                 </Box>
                                 <Box textAlign='center' sx={{marginTop: 2}}>
                                     <Button processing={processing} type='submit'>Get care now</Button>

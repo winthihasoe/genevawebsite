@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCaregiverRequest;
 use App\Http\Requests\UpdateCaregiverRequest;
 use App\Models\Caregiver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
@@ -72,17 +73,34 @@ class CaregiverController extends Controller
 
     public function showDesiredCg(Request $request)
     {
-        $request->validate([
-            'location'=>'required',
-            'care'=>'required'
-        ]);
+        $user = Auth::user();
 
-        // Choosing caregiver according to Location and Field of care from caregiver table
-        $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
-            dd($desiredCaregivers);
-        // return Inertia::render('ChooseCaregiver', [
-        //     'desiredCaregivers'=> $desiredCaregivers
-        // ]);
+        
+        if($user) {
+            $username = $user->name;
+            $request->validate([
+                'location'=>'required',
+                'care'=>'required'
+                ]);
+    
+                // Choosing caregiver according to Location and Field of care from caregiver table
+                $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
+            return Inertia::render('CaregiverFound', [
+                'desiredCaregivers'=> $desiredCaregivers, 'username' => $username
+            ]);
+        }else {
+            $request->validate([
+                'location'=>'required',
+                'care'=>'required'
+                ]);
+    
+                // Choosing caregiver according to Location and Field of care from caregiver table
+                $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
+            return Inertia::render('CaregiverFound', [
+                'desiredCaregivers' => $desiredCaregivers
+            ]);
+        }
+        
     }
 
     /**

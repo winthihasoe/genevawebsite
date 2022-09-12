@@ -29,13 +29,13 @@ function DrawerAppBar(props) {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
             <Typography variant="h6" sx={{ my: 1 }}>
-                <Button sx={{ color: "#000" }} href="#home">Geneva</Button>
+                <Button sx={{ color: "#000" }} href="/#home">Geneva</Button>
             </Typography>
             <Divider />
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: "center" }} href={`#${item.toLowerCase()}`}>
+                        <ListItemButton sx={{ textAlign: "center" }} href={`/#${item.toLowerCase()}`}>
                             <ListItemText primary={item} />
                         </ListItemButton>
                     </ListItem>
@@ -67,12 +67,12 @@ function DrawerAppBar(props) {
                             display: { xs: "none", sm: "block" },
                         }}
                     >
-                        <Button sx={{ color: "#fff" }} href="#home">Geneva</Button>
+                        <Button sx={{ color: "#fff" }} href="/#home">Geneva</Button>
                         
                     </Typography>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navItems.map((item) => (
-                            <Button href={`#${item.toLowerCase()}`} key={item} sx={{ color: "#fff", marginRight: 4 }}>
+                            <Button href={`/#${item.toLowerCase()}`} key={item} sx={{ color: "#fff", marginRight: 4 }}>
                                 {item}
                             </Button>
                         ))}
