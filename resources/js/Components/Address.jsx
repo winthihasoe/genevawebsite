@@ -14,6 +14,7 @@ export class Address extends Component {
                 sx={{
                     "& .MuiTextField-root": { m: 1, width: "25ch" },
                 }}
+                textAlign='center'
             >
                 <div>
                     <TextField

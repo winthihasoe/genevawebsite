@@ -23,11 +23,11 @@ Route::get('/child-care', function (){
     return Inertia::render('ChildCare');
 });
 
-Route::get('/child-care/choose-caregiver', function (){
+Route::get('/choose-caregiver', function (){
     return Inertia::render('ChooseCaregiver');
 });
 
-Route::post('/show-caregivers', [CaregiverController::class, 'showDesiredCg']);
+Route::get('/show-caregivers', [CaregiverController::class, 'showDesiredCg']);
 
 Route::prefix('admin')->group(function(){
     Route::get('/create-caregiver', [CaregiverController::class, 'create'])->name('createCaregiver');

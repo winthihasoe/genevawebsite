@@ -6,9 +6,8 @@ import Grid from "@mui/material/Grid";
 import { Link, useForm } from "@inertiajs/inertia-react";
 import Input from "./Input";
 import Label from "./Label";
-import Image from '../../../public/images/cover.jpg'
-import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
-import Button from "./Button";
+import Image from '/images/cover.jpg'
+import { FormControl, InputLabel, MenuItem, Select, Typography, Button } from "@mui/material";
 
 const style = {
     paperContainer: {
@@ -21,7 +20,7 @@ const style = {
 }
 
 export default function Hero() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, get, processing, errors, reset } = useForm({
         location: "",
         care: "",
     });
@@ -34,7 +33,7 @@ export default function Hero() {
 
     const handleSubmit =e => {
         e.preventDefault();
-        post('/show-caregivers', data)
+        get('/show-caregivers', data)
     }
     return (
         <>
@@ -61,7 +60,6 @@ export default function Hero() {
                                         <MenuItem value={'mkn'}>Myitkyinar</MenuItem>
                                         </Select>
                                     </FormControl>
-                                    {errors.location && <div>{errors.location}</div>}
                                 </Box>
                                 <Box sx={{ minWidth: 200,  marginBottom: 2 }}>
                                     <Label forInput="service" value="Select your service"/>
@@ -80,11 +78,14 @@ export default function Hero() {
                                         <MenuItem value={'elder'}>Elder Care</MenuItem>
                                         </Select>
                                     </FormControl>
-                                    {errors.care && <div>{errors.care}</div>}
                                 </Box>
-                                <Box textAlign='center' sx={{marginTop: 2}}>
-                                    <Button processing={processing} type='submit'>Get care now</Button>
-                                </Box>
+
+                                {/* To show "Get Care Now" button when location and care is inputed  */}
+                                {data.location && data.care && 
+                                    <Box textAlign='center' sx={{marginTop: 2}}>
+                                        <Button processing={processing} variant='contained' type='submit'>Get care now</Button>
+                                    </Box>
+                                }
                             </form>
                         </Paper>
                     </Grid>

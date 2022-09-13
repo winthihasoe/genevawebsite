@@ -1,7 +1,7 @@
 import CaregiverCard from '@/Components/CaregiverCard'
 import UserLayout from '@/Layouts/UserLayout'
 import { Link } from '@inertiajs/inertia-react'
-import { Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 
@@ -10,9 +10,12 @@ export default function CaregiverFound(props) {
   return (
     <UserLayout>
         {props.desiredCaregivers == 0 ? (
-                <Typography variant="h2" component="div" textAlign="center">
-                    Sorry! No Caregiver found.
-                </Typography>
+                <Box textAlign='center'>
+                    <Typography variant="h2" component="div" gutterBottom>
+                    Sorry! No Caregiver found. 
+                    </Typography>
+                    <Link href='/'>Back to Home</Link>
+                </Box>
             ) : (
               <Box>
 
@@ -35,7 +38,12 @@ export default function CaregiverFound(props) {
                   </Box>
                   : 
                   // If user is not signed in, Let user to sign in
-                  <Typography paragraph textAlign='center'>Please <Link href='/login'>Login</Link>  to continue.</Typography>
+                  <Box textAlign='center'>
+                    <Typography paragraph textAlign='center'>Please <Link href='/login'>Login</Link>  to continue.</Typography>
+                    <Link href='/login'>
+                      <Button variant='contained' color='secondary'>Login</Button>
+                    </Link>
+                  </Box>    
                 }
                 
               </Box>

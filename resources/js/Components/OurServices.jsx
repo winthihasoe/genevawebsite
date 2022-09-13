@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/inertia-react'
 import { Card, CardActionArea, CardMedia, Grid, styled, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
@@ -28,10 +29,8 @@ export default function OurServices() {
 
         <Grid container spacing={4} justifyContent="center">
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            
-              <Item component="button">
-                <Card>
-             <CardActionArea>
+            <Link href='/child-care'>
+              <Item>
                 <CardMedia
                         component="img"
                         sx={{
@@ -45,13 +44,11 @@ export default function OurServices() {
                 <Typography component='div' variant='h6'>
                   Child Care
                 </Typography>
-                </CardActionArea>
-                </Card>
               </Item>
-            
-            
+            </Link>
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
+          <Link href='/choose-caregiver'>
             <Item>
               <CardMedia
                     component="img"
@@ -65,9 +62,12 @@ export default function OurServices() {
             /> 
             <Typography component='div' variant='h6'>
               Elder Care
-            </Typography></Item>
+            </Typography>
+            </Item>
+          </Link>
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
+            <Link href='/choose-caregiver'>
             <Item>
             <CardMedia
                     component="img"
@@ -83,8 +83,10 @@ export default function OurServices() {
               Hospitalized Care
             </Typography>
             </Item>
+            </Link>
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
+            <Link href='/choose-caregiver'>
             <Item>
             <CardMedia
                     component="img"
@@ -100,6 +102,7 @@ export default function OurServices() {
               Trip Care Plan
             </Typography>
             </Item>
+            </Link>
           </Grid>
         </Grid>
     </Box>

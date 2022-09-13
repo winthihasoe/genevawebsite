@@ -12,8 +12,6 @@ import {
 import React, { Component } from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-
-import Stack from "@mui/material/Stack";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 
 export class Duration extends Component {
@@ -33,10 +31,11 @@ export class Duration extends Component {
                 sx={{
                     "& .MuiTextField-root": { m: 1, width: "25ch" },
                 }}
+                textAlign='center'
             >
-                <Typography variant="h6">When do you need care?</Typography>
+                <Typography variant="h6" textAlign='center'>When do you need care?</Typography>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <Stack spacing={3}>
+                    <Box textAlign='center'>
                         <MobileDatePicker
                             label="Starting Date"
                             value={values.startDate}
@@ -49,12 +48,14 @@ export class Duration extends Component {
                             onChange={handleDate("endDate")}
                             renderInput={(params) => <TextField {...params} />}
                         />
+                    </Box>
+                    <Box sx={{mt: 3}}>
                         <FormControl>
                             <FormLabel id="demo-row-radio-buttons-group-label">
                                 What duty do you need?
                             </FormLabel>
                             <RadioGroup
-                                row
+                                
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
                                 onChange={handleChange("dutyAssign")}
@@ -76,7 +77,7 @@ export class Duration extends Component {
                                 />
                             </RadioGroup>
                         </FormControl>
-                    </Stack>
+                    </Box>
                 </LocalizationProvider>
                 <Button
                     style={styles.button}

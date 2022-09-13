@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { CssBaseline } from "@mui/material";
+import { Link } from "@inertiajs/inertia-react";
 
 const drawerWidth = 240;
 const navItems = ["Service", "Training",  "About", "Contact"];
@@ -67,7 +68,7 @@ function DrawerAppBar(props) {
                             display: { xs: "none", sm: "block" },
                         }}
                     >
-                        <Button sx={{ color: "#fff" }} href="/#home">Geneva</Button>
+                        <Link href="/#home">Geneva</Link>
                         
                     </Typography>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>

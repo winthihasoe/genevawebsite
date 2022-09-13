@@ -18,7 +18,7 @@ export default function ChildCare() {
     return (
         <>
             <Navbar />
-            <Container>
+            <Container maxWidth='xs' sx={{mt: 5}}>
                 <ThemeProvider theme={theme}>
                     <Box
                         sx={{
@@ -28,6 +28,7 @@ export default function ChildCare() {
                         }}
                     >
                         <Typography variant="h3">Please fill Form</Typography>
+                        <Typography variant="overline">We care for your <b>child</b></Typography>
                         <ChildForm />
                     </Box>
                 </ThemeProvider>

@@ -73,9 +73,10 @@ class CaregiverController extends Controller
 
     public function showDesiredCg(Request $request)
     {
+        // Check the user is logined in or not
         $user = Auth::user();
 
-        
+        // If signed in show caregivers
         if($user) {
             $username = $user->name;
             $request->validate([
