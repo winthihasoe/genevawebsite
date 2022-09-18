@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AdminLayoutController;
 use App\Http\Controllers\CaregiverController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -15,27 +15,23 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function(){
-    return Inertia::render('Index');
-});
+// --------------------- Guest ---------------------- 
+Route::get('/', [PageController::class, 'index'])->name('home');
 
-Route::get('/child-care', function (){
-    return Inertia::render('ChildCare');
-});
-
-Route::get('/choose-caregiver', function (){
-    return Inertia::render('ChooseCaregiver');
-});
-
+// --------------------- User ---------------------- 
+Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
+Route::get('/child-care', [PageController::class, 'childCare'])->middleware(['auth'])->name('childCare');
+Route::get('/child-care/choose-caregiver', [PageController::class, 'chooseCaregiver'])->name('chooseCaregiver');
 Route::get('/show-caregivers', [CaregiverController::class, 'showDesiredCg']);
 
+
+// --------------------- Admin ---------------------- 
 Route::prefix('admin')->group(function(){
+    Route::get('/dashboard', [AdminLayoutController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
     Route::get('/create-caregiver', [CaregiverController::class, 'create'])->name('createCaregiver');
     Route::post('/create-caregiver', [CaregiverController::class, 'store']);
     Route::get('/caregivers', [CaregiverController::class, 'index'])->middleware(['auth', 'verified'])->name('caregivers');
-    Route::get('/dashboard', [AdminLayoutController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 });
-
-
 
 require __DIR__.'/auth.php';

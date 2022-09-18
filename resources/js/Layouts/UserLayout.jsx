@@ -40,15 +40,13 @@ export default function UserLayout({ children }) {
     });
     return (
         <ThemeProvider theme={theme}>
-            <Navbar />
-            <Box sx={{height: '100vh'}}>
+            <Navbar/>
             <Container component="main" maxWidth="sm">
 
                 <CssBaseline />
                 <Box sx={{pt: 2}}>{children}</Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
-            </Box>
         </ThemeProvider>
     );
 }

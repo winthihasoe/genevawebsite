@@ -87,7 +87,7 @@ class CaregiverController extends Controller
                 // Choosing caregiver according to Location and Field of care from caregiver table
                 $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
             return Inertia::render('CaregiverFound', [
-                'desiredCaregivers'=> $desiredCaregivers, 'username' => $username
+                'desiredCaregivers'=> $desiredCaregivers, 'username' => $username, 'location' => $request->location
             ]);
         }else {
             $request->validate([

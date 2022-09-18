@@ -19,12 +19,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        // Copy from stackoverflow
+       session(['link'=>url()->previous()]);
+
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
         ]);
     }
 
+    
     /**
      * Handle an incoming authentication request.
      *
@@ -33,11 +37,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Redirect to previous page after Login
+        return redirect(session('link'));
     }
 
     /**

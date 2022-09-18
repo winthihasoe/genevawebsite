@@ -13,6 +13,7 @@ export default function CaregiverCard({ caregiver }) {
                 <CardActionArea>
                     <Box sx={{height: 140, overflow: 'hidden'}}>
                     <CardMedia
+                        sx={{p: 0.5}}
                         component="img"
                         image={`/images/profiles/${caregiver.image}`}
                         alt={caregiver.name}

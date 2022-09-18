@@ -17,7 +17,7 @@ const Item = styled(Box)(({theme})=>({
 export default function OurServices() {
   return (
     <Box sx={{marginBottom: 5, paddingTop: 8, paddingBottom: 8}} id='service'>
-        <Box textAlign='center' gutterBottom>
+        <Box textAlign='center'>
             <Typography variant='h4' gutterBottom sx={{}}>
                 OUR SERVICES
             </Typography>

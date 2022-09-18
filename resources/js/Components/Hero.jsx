@@ -33,6 +33,7 @@ export default function Hero() {
 
     const handleSubmit =e => {
         e.preventDefault();
+        
         get('/show-caregivers', data)
     }
     return (

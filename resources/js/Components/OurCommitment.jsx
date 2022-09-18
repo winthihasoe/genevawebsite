@@ -1,9 +1,5 @@
 import React from 'react'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
-import AccessibleIcon from '@mui/icons-material/Accessible';
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import { styled } from '@mui/system';
 
 export default function OurCommitment() {
   return (
