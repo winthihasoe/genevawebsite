@@ -110,11 +110,12 @@ class CaregiverController extends Controller
      * @param  \App\Models\Caregiver  $caregiver
      * @return \Illuminate\Http\Response
      */
-    public function show(Caregiver $caregiver)
+    public function show($caregiver)
     {
-        //
-
-
+        $caregiver = Caregiver::find($caregiver);
+        return Inertia::render('Caregiver', [
+            'caregiver' => $caregiver
+        ]);
     }
 
     /**

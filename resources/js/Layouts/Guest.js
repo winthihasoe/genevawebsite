@@ -52,11 +52,14 @@ export default function Guest({ children }) {
                             height: 90,
                         }}
                     >
-                        <img
-                            src="images/logo.png"
-                            alt="logo"
-                            className={useStyles.logo}
-                        />
+                        <Link href="/">
+                            <img
+                                src="images/logo.png"
+                                alt="logo"
+                                className={useStyles.logo}
+                                
+                            />
+                        </Link>
                     </Avatar>
 
                     <Box sx={{ mt: 1 }}>{children}</Box>

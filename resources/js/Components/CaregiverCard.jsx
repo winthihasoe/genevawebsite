@@ -10,7 +10,7 @@ export default function CaregiverCard({ caregiver }) {
     return (
         
             <Card sx={{ width: 160 }} style={{ height: '100%' }}>
-                <CardActionArea>
+                <CardActionArea href={route('caregiver', caregiver.id)}>
                     <Box sx={{height: 140, overflow: 'hidden'}}>
                     <CardMedia
                         sx={{p: 0.5}}

@@ -24,6 +24,7 @@ Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update
 Route::get('/child-care', [PageController::class, 'childCare'])->middleware(['auth'])->name('childCare');
 Route::get('/child-care/choose-caregiver', [PageController::class, 'chooseCaregiver'])->name('chooseCaregiver');
 Route::get('/show-caregivers', [CaregiverController::class, 'showDesiredCg']);
+Route::get('/caregiver/{caregiver}', [CaregiverController::class, 'show'])->name('caregiver');
 
 
 // --------------------- Admin ---------------------- 
