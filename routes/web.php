@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLayoutController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CaregiverController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
@@ -23,8 +24,11 @@ Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::get('/child-care', [PageController::class, 'childCare'])->middleware(['auth'])->name('childCare');
 Route::get('/child-care/choose-caregiver', [PageController::class, 'chooseCaregiver'])->name('chooseCaregiver');
+
+// Start from Hero section form
 Route::get('/show-caregivers', [CaregiverController::class, 'showDesiredCg']);
 Route::get('/caregiver/{caregiver}', [CaregiverController::class, 'show'])->name('caregiver');
+Route::get('/booking', [BookingController::class, 'booking'])->name('booking');
 
 
 // --------------------- Admin ---------------------- 

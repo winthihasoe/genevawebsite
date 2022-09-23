@@ -20,7 +20,7 @@ const style = {
 }
 
 export default function Hero() {
-    const { data, setData, get, processing, errors, reset } = useForm({
+    const { data, setData, get, errors, reset } = useForm({
         location: "",
         care: "",
     });
@@ -49,16 +49,16 @@ export default function Hero() {
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">City</InputLabel>
                                         <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="City"
-                                        value={data.location}
-                                        onChange={handleChange}
-                                        name='location'
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            label="City"
+                                            value={data.location}
+                                            onChange={handleChange}
+                                            name='location'
                                         >
-                                        <MenuItem value={'ygn'}>Yangon</MenuItem>
-                                        <MenuItem value={'mdy'}>Mandalay</MenuItem>
-                                        <MenuItem value={'mkn'}>Myitkyinar</MenuItem>
+                                            <MenuItem value={'ygn'}>Yangon</MenuItem>
+                                            <MenuItem value={'mdy'}>Mandalay</MenuItem>
+                                            <MenuItem value={'mkn'}>Myitkyinar</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -68,15 +68,15 @@ export default function Hero() {
                                         
                                         <InputLabel id="demo-simple-select-label">Service</InputLabel>
                                         <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Service"
-                                        value={data.care}
-                                        onChange={handleChange}
-                                        name='care'
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            label="Service"
+                                            value={data.care}
+                                            onChange={handleChange}
+                                            name='care'
                                         >
-                                        <MenuItem value={'baby'}>Baby Care</MenuItem>
-                                        <MenuItem value={'elder'}>Elder Care</MenuItem>
+                                            <MenuItem value={'baby'}>Baby Care</MenuItem>
+                                            <MenuItem value={'elder'}>Elder Care</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -84,7 +84,7 @@ export default function Hero() {
                                 {/* To show "Get Care Now" button when location and care is inputed  */}
                                 {data.location && data.care && 
                                     <Box textAlign='center' sx={{marginTop: 2}}>
-                                        <Button processing={processing} variant='contained' type='submit'>Get care now</Button>
+                                        <Button variant='contained' type='submit'>Get care now</Button>
                                     </Box>
                                 }
                             </form>

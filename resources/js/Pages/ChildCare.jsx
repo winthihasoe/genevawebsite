@@ -5,6 +5,7 @@ import { Container } from "@mui/system";
 import { Box, createTheme, Typography } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { red } from "@mui/material/colors";
+import { Head } from "@inertiajs/inertia-react";
 
 const theme = createTheme({
     palette: {
@@ -17,6 +18,7 @@ const theme = createTheme({
 export default function ChildCare() {
     return (
         <>
+            <Head title="Booking for baby" />
             <Navbar />
             <Container maxWidth='xs' sx={{mt: 5}}>
                 <ThemeProvider theme={theme}>

@@ -164,11 +164,11 @@ function DrawerAppBar(props) {
                                 </MenuItem>
                             
                                 <MenuItem>
-                                    <Button color="error" variant="outlined">
                                     <Link method="post" as="button" href={route('logout')}>
+                                    <Button color="error" variant="outlined">
                                         Logout
-                                    </Link>
                                     </Button>
+                                    </Link>
                                 </MenuItem>
                             
                             </Menu>

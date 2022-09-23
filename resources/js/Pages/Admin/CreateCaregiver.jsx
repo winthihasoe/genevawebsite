@@ -227,6 +227,7 @@ export default function CreateCaregiver(props) {
                                 <MenuItem value={"elder"}>Elder Care</MenuItem>
                                 <MenuItem value={"elder_child"}>Elder Care & Child Care</MenuItem>
                             </Select>
+
                             <FormControlLabel
                                 value="personal grooming"
                                 control={
@@ -264,7 +265,7 @@ export default function CreateCaregiver(props) {
                                 label="Bottle Feeding"
                             />
                         </FormGroup>
-                        <FormGroup></FormGroup>
+                        
                         <Button
                             style={styles.button}
                             variant="contained"

@@ -1,11 +1,13 @@
+import { Head, Link } from '@inertiajs/inertia-react';
 import { Paper, Typography, Box, Grid, Chip, Divider, Button } from '@mui/material'
 import { Stack } from '@mui/system';
 import React from 'react'
 
 
-export default function Caregiver({caregiver}) {
+export default function Caregiver({caregiver, care}) {
   return (
     <>
+    <Head title={`${caregiver.name}`} />
         <Box maxWidth='md' sx={{ padding: 2, margin: 'auto'}}>
             <Paper elevation={16} sx={{ padding: 5 }}>
                
@@ -61,7 +63,9 @@ export default function Caregiver({caregiver}) {
                     </Grid>
                 </Grid>
                 <Box sx={{ padding: 2, margin: 2}} textAlign='center'>
-                    <Button color='error' variant='contained'>Book Now</Button>
+                    <Link href={route('booking', {'care': care})} as='button' type='button'>
+                       Book Now
+                    </Link>
                 </Box>
             </Paper>
         </Box>

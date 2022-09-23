@@ -1,14 +1,16 @@
 import CaregiverCard from '@/Components/CaregiverCard'
 import UserLayout from '@/Layouts/UserLayout'
-import { Head, Link } from '@inertiajs/inertia-react'
+import { Head, Link, usePage } from '@inertiajs/inertia-react'
 import { Button, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 
 export default function CaregiverFound(props) {
+  const auth = usePage().props.auth;
+  
   
   return (
-    <UserLayout auth={props.auth}>
+    <UserLayout auth={auth}>
       <Head title='Caregiver Found' />
         {props.desiredCaregivers == 0 ? (
                 <Box textAlign='center'>
@@ -26,15 +28,16 @@ export default function CaregiverFound(props) {
                 </Typography>
 
                 {/* Check the user is sign in or not  */}
-                {props.username ? 
+                {auth.user ? 
                   <Box sx={{
                           p: 1,
                           display: "flex",
                           gap: 1,
                           flexWrap: "wrap",
-                  }}>
-                    {props.desiredCaregivers.map(caregiver => (
-                      <CaregiverCard caregiver={caregiver} />
+                        }}
+                  >
+                    {props.desiredCaregivers.map((caregiver) => (
+                      <CaregiverCard key={caregiver.id} caregiver={caregiver}/>
                     ))}
                   </Box>
                   : 

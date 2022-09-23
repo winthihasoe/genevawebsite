@@ -13,13 +13,12 @@ export default function UserLayout({ children }) {
     function Copyright(props) {
         return (
             
-            <Typography
-                variant="body2"
-                color="text.secondary"
+            <Box
+                
                 align="center"
                 {...props}
             >
-                <Typography variant="body1" color='text.primary' align='center'>
+                <Typography color='text.primary' align='center'>
                 Geneva Caregiver Training & Service
                 </Typography>
             
@@ -28,7 +27,7 @@ export default function UserLayout({ children }) {
                     Geneva Co.,Ltd
                 </Link>{" "}
                 2022
-            </Typography>
+            </Box>
             
         );
     }

@@ -74,34 +74,22 @@ class CaregiverController extends Controller
     public function showDesiredCg(Request $request)
     {
         // Check the user is logined in or not
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        // If signed in show caregivers
-        if($user) {
-            $username = $user->name;
-            $request->validate([
-                'location'=>'required',
-                'care'=>'required'
-                ]);
-    
-                // Choosing caregiver according to Location and Field of care from caregiver table
-                $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
-            return Inertia::render('CaregiverFound', [
-                'desiredCaregivers'=> $desiredCaregivers, 'username' => $username, 'location' => $request->location
-            ]);
-        }else {
-            $request->validate([
-                'location'=>'required',
-                'care'=>'required'
-                ]);
-    
-                // Choosing caregiver according to Location and Field of care from caregiver table
-                $desiredCaregivers = DB::table('caregivers')->where('location', $request->location)->where('care', '=', $request->care)->orWhere('care', 'elder_child')->where('location', $request->location)->get();
-            return Inertia::render('CaregiverFound', [
-                'desiredCaregivers' => $desiredCaregivers
-            ]);
-        }
-        
+        $request->validate([
+            'location' => 'required',
+            'care' => 'required',
+        ]);
+
+        $desiredCaregivers = DB::table('caregivers')
+            ->where('location', $request->location)
+            ->where('care', '=', $request->care)
+            ->orWhere('care', 'elder_child')
+            ->where('location', $request->location)->get();
+
+        return Inertia::render('CaregiverFound', [
+            'desiredCaregivers'=> $desiredCaregivers, 'location' => $request->location, 'care' => $request->care,
+        ]);
     }
 
     /**
@@ -110,11 +98,15 @@ class CaregiverController extends Controller
      * @param  \App\Models\Caregiver  $caregiver
      * @return \Illuminate\Http\Response
      */
-    public function show($caregiver)
+    public function show($caregiver, Request $request)
     {
+        $care = $request->care;
         $caregiver = Caregiver::find($caregiver);
+        // if ($request->has('invitee')) {
+        //     $user->invitee = $request->input('invitee');
+        //  }
         return Inertia::render('Caregiver', [
-            'caregiver' => $caregiver
+            'caregiver' => $caregiver, 'care' => $care,
         ]);
     }
 

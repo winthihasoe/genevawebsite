@@ -14,7 +14,7 @@ class CreateCaregiversTable extends Migration
             $table->string('nrc')->nullable();
             $table->integer('age');
             $table->integer('weight');
-            $table->float('height',4,1);
+            $table->float('height', 2, 1);
             $table->string('address');
             $table->string('location');
             $table->string('phone');
