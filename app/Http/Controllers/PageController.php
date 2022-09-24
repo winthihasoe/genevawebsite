@@ -21,6 +21,12 @@ class PageController extends Controller
         return Inertia::render('ChildCare');
     }
 
+
+    public function elderCare()
+    {
+        return Inertia::render('ElderCare');
+    }
+
     // Choose caregiver page is followed to child care request form 
     public function chooseCaregiver () {
         return Inertia::render('ChooseCaregiver');

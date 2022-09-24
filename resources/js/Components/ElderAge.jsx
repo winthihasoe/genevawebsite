@@ -30,19 +30,17 @@ export class ElderAge extends Component {
                     "& .MuiTextField-root": { m: 1, width: "25ch" },
                 }}
             >
-                <Typography variant="h6">Who Needs Care?</Typography>
+                <Typography variant="h6" gutterBottom>Please fill the patient age</Typography>
 
                 <Stack spacing={3}>
                     <FormControl>
-                        <FormLabel id="demo-row-radio-buttons-group-label">
-                            Please choose patient age.
-                        </FormLabel>
+                        
                         <Input
                         type="number"
                         name="age"
                         // value={data.age}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                     
                         isFocused={true}
                         
                     />

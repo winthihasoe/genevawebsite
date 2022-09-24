@@ -29,7 +29,7 @@ export default function OurServices() {
 
         <Grid container spacing={4} justifyContent="center">
           <Grid item lg={3} md={3} sm={4} xs={6}>
-            <Link href='/child-care'>
+            <Link href={route('childCare')}>
               <Item>
                 <CardMedia
                         component="img"
@@ -48,7 +48,7 @@ export default function OurServices() {
             </Link>
           </Grid>
           <Grid item lg={3} md={3} sm={4} xs={6}>
-          <Link href='/choose-caregiver'>
+          <Link href={route('elderCare')}>
             <Item>
               <CardMedia
                     component="img"

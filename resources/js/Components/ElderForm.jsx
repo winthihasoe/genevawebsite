@@ -5,6 +5,7 @@ import ElderCareTopics from "./ElderCareTopics";
 import Duration from "./Duration";
 
 export class ElderForm extends Component {
+    
     state = {
         step: 1,
         address: "",
@@ -56,7 +57,6 @@ export class ElderForm extends Component {
             });
         }
     };
-
     render() {
         const { step } = this.state;
         const {
