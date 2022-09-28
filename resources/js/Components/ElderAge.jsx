@@ -2,15 +2,11 @@ import {
     Box,
     Button,
     FormControl,
-    FormControlLabel,
-    FormLabel,
-    Radio,
-    RadioGroup,
+    TextField,
     Typography,
 } from "@mui/material";
 import React, { Component } from "react";
 import Stack from "@mui/material/Stack";
-import Input from "./Input";
 
 export class ElderAge extends Component {
     continue = (e) => {
@@ -22,7 +18,7 @@ export class ElderAge extends Component {
         this.props.prevStep();
     };
     render() {
-        const { handleChange } = this.props;
+        const { values, handleChange } = this.props;
         return (
             <Box
                 component="form"
@@ -35,13 +31,12 @@ export class ElderAge extends Component {
                 <Stack spacing={3}>
                     <FormControl>
                         
-                        <Input
+                        <TextField
                         type="number"
                         name="age"
-                        // value={data.age}
+                        value={values.elderAge}
                         className="mt-1 block w-full"
-                     
-                        isFocused={true}
+                        onChange={handleChange('elderAge')}
                         
                     />
                     </FormControl>

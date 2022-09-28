@@ -18,23 +18,25 @@ export class Address extends Component {
             >
                 <div>
                     <TextField
+                        label="Patient Name"
+                        variant="standard"
+                        onChange={handleChange("patient_name")}
+                        defaultValue={values.patient_name}
+                    />
+                    <TextField
                         label="Address"
                         variant="standard"
                         onChange={handleChange("address")}
                         defaultValue={values.address}
                     />
                     <TextField
-                        id="standard-error-helper-text"
                         label="City"
-                        helperText="Incorrect entry."
                         variant="standard"
                         onChange={handleChange("city")}
                         defaultValue={values.city}
                     />
                     <TextField
-                        id="standard-error-helper-text"
                         label="Phone No."
-                        helperText="Incorrect entry."
                         variant="standard"
                         onChange={handleChange("phone")}
                         defaultValue={values.phone}

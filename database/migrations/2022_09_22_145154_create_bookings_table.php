@@ -16,8 +16,8 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->string('start_date');
+            $table->string('end_date')->nullable();
             $table->string('care');
             $table->string('duty');
             $table->timestamps();

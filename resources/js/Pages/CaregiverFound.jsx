@@ -8,7 +8,7 @@ import React from 'react'
 export default function CaregiverFound(props) {
   const auth = usePage().props.auth;
   
-  
+  console.log(props);
   return (
     <UserLayout auth={auth}>
       <Head title='Caregiver Found' />
@@ -24,7 +24,10 @@ export default function CaregiverFound(props) {
 
                 {/* Showing the number of caregivers found according to the user desired in that region  */}
                 <Typography variant="h5" component='div' textAlign='center' gutterBottom>
-                    We found {props.desiredCaregivers.length == 1 ? 'only': ''} <b> {props.desiredCaregivers.length} {" qualified Geneva "} {props.desiredCaregivers.length > 1 ? 'caregivers' : 'caregiver'} </b> {props.location == 'mdy' ? 'in Mandalay' : ''} {props.location == 'ygn' ? 'in Yangon' : ''} {props.location == 'mkn' ? 'in Myitkyina' : ''}
+                    We found {props.desiredCaregivers.length == 1 ? 'only': ''} <b> {props.desiredCaregivers.length} {" qualified Geneva "} {props.desiredCaregivers.length > 1 ? 'caregivers' : 'caregiver'} </b> 
+
+                    {/* If the user isn't signed in, no location showed. */}
+                    {auth.user ? <span>{props.location == 'mdy' ? 'in Mandalay' : ''} {props.location == 'ygn' ? 'in Yangon' : ''} {props.location == 'mkn' ? 'in Myitkyina' : ''}</span> : ''} 
                 </Typography>
 
                 {/* Check the user is sign in or not  */}

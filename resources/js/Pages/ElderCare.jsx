@@ -15,7 +15,9 @@ const theme = createTheme({
     },
 });
 
-export default function ElderCare() {
+export default function ElderCare(props) {
+    //This id is the caregiver id for patient booking
+    const bookedCaregiver = props.bookedCaregiver;
     return (
         <>
             <Head title="Booking for elder" />
@@ -31,7 +33,7 @@ export default function ElderCare() {
                     >
                         <Typography variant="h3">Please fill Form</Typography>
                         <Typography variant="overline">We care for your <b>love One</b></Typography>
-                        <ElderForm />
+                        <ElderForm bookedCaregiver={bookedCaregiver} />
                     </Box>
                 </ThemeProvider>
             </Container>

@@ -33,11 +33,11 @@ export class ElderCareTopics extends Component {
                         </FormLabel>
                         <FormGroup>
                             <FormControlLabel
-                                value="personal_grooming"
+                                value="Personal grooming"
                                 control={
                                     <Checkbox
                                         checked={values.elderCareTopics.includes(
-                                            "personal_grooming"
+                                            "Personal grooming"
                                         )}
                                         onChange={handleCareTopics(
                                             "elderCareTopics"
@@ -47,11 +47,11 @@ export class ElderCareTopics extends Component {
                                 label="Personal grooming"
                             />
                             <FormControlLabel
-                                value="nasal_tube_feeding"
+                                value="Nasal tube feeding"
                                 control={
                                     <Checkbox
                                         checked={values.elderCareTopics.includes(
-                                            "nasal_tube_feeding"
+                                            "Nasal tube feeding"
                                         )}
                                         onChange={handleCareTopics(
                                             "elderCareTopics"
@@ -61,11 +61,11 @@ export class ElderCareTopics extends Component {
                                 label="Nasal Tube Feeding"
                             />
                             <FormControlLabel
-                                value="bedsore_care"
+                                value="Bedsore care"
                                 control={
                                     <Checkbox
                                         checked={values.elderCareTopics.includes(
-                                            "bedsore_care"
+                                            "Bedsore care"
                                         )}
                                         onChange={handleCareTopics(
                                             "elderCareTopics"
@@ -87,18 +87,18 @@ export class ElderCareTopics extends Component {
                         Back
                     </Button>
 
-                    <Button style={styles.button} variant="contained">
-                        <Link href="/child-care/choose-caregiver">
-                            Continue
-                        </Link>
-                    </Button>
+                   <Link href={route('finishBooking', {values})}>
+                        <Button variant="contained" style={styles.button}>Finish</Button>
+                   </Link>
                 </Box>
+                <p>This is final step of booking, Thank you.</p>
             </>
         );
     }
 }
 
 const styles = {
+    
     button: {
         margin: 15,
     },

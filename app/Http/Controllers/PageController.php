@@ -17,14 +17,14 @@ class PageController extends Controller
     // Start child care request form for customer
     // This form have some step to fill detail of customer
     // This form is guard with middleware 'auth'
-    public function childCare () {
-        return Inertia::render('ChildCare');
+    public function startChildCare () {
+        return Inertia::render('StartChildCare');
     }
 
 
-    public function elderCare()
+    public function startElderCare()
     {
-        return Inertia::render('ElderCare');
+        return Inertia::render('StartElderCare');
     }
 
     // Choose caregiver page is followed to child care request form 

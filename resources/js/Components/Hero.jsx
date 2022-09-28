@@ -34,8 +34,9 @@ export default function Hero() {
     const handleSubmit =e => {
         e.preventDefault();
         
-        get('/show-caregivers', data)
+        get(route('showCaregivers'), data);
     }
+    console.log(data);
     return (
         <>
             <div style={style.paperContainer} id="home">
@@ -75,7 +76,7 @@ export default function Hero() {
                                             onChange={handleChange}
                                             name='care'
                                         >
-                                            <MenuItem value={'baby'}>Baby Care</MenuItem>
+                                            <MenuItem value={'child'}>Baby Care</MenuItem>
                                             <MenuItem value={'elder'}>Elder Care</MenuItem>
                                         </Select>
                                     </FormControl>

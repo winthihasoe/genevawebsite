@@ -63,7 +63,7 @@ export default function Caregiver({caregiver, care}) {
                     </Grid>
                 </Grid>
                 <Box sx={{ padding: 2, margin: 2}} textAlign='center'>
-                    <Link href={route('booking', {'care': care})} as='button' type='button'>
+                    <Link href={route('booking',  {'id': caregiver.id,'care': care})} as='button' type='button'>
                        Book Now
                     </Link>
                 </Box>

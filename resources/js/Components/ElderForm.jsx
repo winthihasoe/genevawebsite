@@ -3,19 +3,22 @@ import Address from "./Address";
 import ElderAge from "./ElderAge";
 import ElderCareTopics from "./ElderCareTopics";
 import Duration from "./Duration";
+import { usePage } from "@inertiajs/inertia-react";
 
 export class ElderForm extends Component {
     
     state = {
         step: 1,
+        patient_name: "",
         address: "",
         city: "",
         phone: "",
         startDate: null,
         endDate: "",
         dutyAssign: "",
-        elderAge: null,
+        elderAge: "",
         elderCareTopics: [],
+        care: 'elder',
     };
 
     // Proceed to next step
@@ -57,9 +60,13 @@ export class ElderForm extends Component {
             });
         }
     };
+
+   
     render() {
         const { step } = this.state;
-        const {
+        const bookedCaregiver = this.props.bookedCaregiver;
+        const {      
+            patient_name,
             address,
             city,
             phone,
@@ -68,8 +75,11 @@ export class ElderForm extends Component {
             dutyAssign,
             elderAge,
             elderCareTopics,
+            care,
         } = this.state;
         const values = {
+            ...bookedCaregiver,
+            patient_name,
             address,
             city,
             phone,
@@ -78,8 +88,10 @@ export class ElderForm extends Component {
             dutyAssign,
             elderAge,
             elderCareTopics,
+            care
         };
-
+        
+        
         switch (step) {
             case 1:
                 return (

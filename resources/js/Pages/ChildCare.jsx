@@ -15,12 +15,13 @@ const theme = createTheme({
     },
 });
 
-export default function ChildCare() {
+export default function ChildCare(props) {
     return (
         <>
             <Head title="Booking for baby" />
             <Navbar />
             <Container maxWidth='xs' sx={{mt: 5}}>
+                <p>caregiver id is {props.id}</p>
                 <ThemeProvider theme={theme}>
                     <Box
                         sx={{
