@@ -1,13 +1,12 @@
 import * as React from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import Box from "@mui/joy/Box";
 import {
     Button,
     Checkbox,
     Container,
     Divider,
-    FormControl,
     FormControlLabel,
     FormGroup,
     InputLabel,
@@ -15,18 +14,22 @@ import {
     Select,
     Typography,
     TextField,
+    Grid,
+    FormControl,
 } from "@mui/material";
 import { useForm } from "@inertiajs/inertia-react";
 import {
     DatePicker,
     LocalizationProvider,
-    MobileDatePicker,
 } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { Stack } from "@mui/system";
+import LoupeIcon from '@mui/icons-material/Loupe';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import DoNotDisturbSharpIcon from '@mui/icons-material/DoNotDisturbSharp';
 
 export default function CreateCaregiver(props) {
-    const { data, setData, post, progress } = useForm({
+    const { data, setData, post, progress, errors } = useForm({
         name: "",
         age: "",
         weight: "",
@@ -38,9 +41,12 @@ export default function CreateCaregiver(props) {
         join_date: "",
         image: null,
         location: "",
-        care: ""
+        care: "",
+        newSkill: "",
     });
 
+    const [toggleAddNewSkill, setToggleAddNewSkill] = React.useState(false);
+    
     function handleChange(event) {
         const { name, value } = event.target;
         setData({ ...data, [name]: value });
@@ -68,17 +74,18 @@ export default function CreateCaregiver(props) {
             });
         }
     };
-    console.log(data);
+
+    const handleNewSkill = (e) => {
+        e.preventDefault();
+        post(route('addNewSkill'), data.newSkill);
+        setData({...data, newSkill: ""});
+    }
+
     return (
         <Authenticated auth={props.auth} errors={props.errors}>
             <Head title="Caregivers" />
             <Container
-                sx={{
-                    p: 3,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
+                maxWidth='md'
             >
                 <Typography variant="h4">Add A New Caregiver</Typography>
 
@@ -142,20 +149,6 @@ export default function CreateCaregiver(props) {
                                 value={data.address}
                                 onChange={handleChange}
                             />
-                            
-                            <InputLabel id="city">Select City</InputLabel>
-                            <Select
-                                labelId="city"
-                                id="city"
-                                value={data.location}
-                                label="Select City"
-                                name="location"
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={"ygn"}>Yangon</MenuItem>
-                                <MenuItem value={"mdy"}>Mandalay</MenuItem>
-                                <MenuItem value={"mkn"}>Myitkyina</MenuItem>
-                            </Select>
 
                             <TextField
                                 label="Phone"
@@ -165,7 +158,24 @@ export default function CreateCaregiver(props) {
                                 value={data.phone}
                                 onChange={handleChange}
                             />
+                            
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="city">Select City</InputLabel>
+                            <Select
+                                labelId="city"
+                                id="location"
+                                value={data.location}
+                                label="Location"
+                                name="location"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={"ygn"}>Yangon</MenuItem>
+                                <MenuItem value={"mdy"}>Mandalay</MenuItem>
+                                <MenuItem value={"mkn"}>Myitkyina</MenuItem>
+                            </Select>
+                            </FormControl>
 
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <InputLabel id="level">Select Level</InputLabel>
                             <Select
                                 labelId="level"
@@ -179,6 +189,8 @@ export default function CreateCaregiver(props) {
                                 <MenuItem value={"skilled"}>Skilled</MenuItem>
                                 <MenuItem value={"advanced"}>Advanced</MenuItem>
                             </Select>
+                            </FormControl>
+
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DatePicker
                                     label="Joined Date"
@@ -227,45 +239,98 @@ export default function CreateCaregiver(props) {
                                 <MenuItem value={"elder"}>Elder Care</MenuItem>
                                 <MenuItem value={"elder_child"}>Elder Care & Child Care</MenuItem>
                             </Select>
-
-                            <FormControlLabel
-                                value="personal grooming"
-                                control={
-                                    <Checkbox
-                                        checked={data.skills.includes(
-                                            "personal grooming"
-                                        )}
-                                        onChange={handleSkills("skills")}
-                                    />
-                                }
-                                label="Personal grooming"
-                            />
-                            <FormControlLabel
-                                value="breastfeeding"
-                                control={
-                                    <Checkbox
-                                        checked={data.skills.includes(
-                                            "breastfeeding"
-                                        )}
-                                        onChange={handleSkills("skills")}
-                                    />
-                                }
-                                label="Breast Feeding"
-                            />
-                            <FormControlLabel
-                                value="bottle feeding"
-                                control={
-                                    <Checkbox
-                                        checked={data.skills.includes(
-                                            "bottle feeding"
-                                        )}
-                                        onChange={handleSkills("skills")}
-                                    />
-                                }
-                                label="Bottle Feeding"
-                            />
                         </FormGroup>
-                        
+
+{/* ------------ Loop topics from CareTopic migration ----------------------- */}
+                            {/* If field of care is selected 'Elder care'  */}
+                                {data.care == 'elder' ? (
+                                    <Grid container sx={{margin: 2}}>
+                                        <Grid item md={12} xs={12}>
+                                        <Typography variant="h6">Elder Care Topic</Typography>
+                                        {props.elderCareTopics.map(topic=>(
+                                            <FormControlLabel
+                                                key={topic.id}
+                                                value={topic.topic}
+                                                control={
+                                                    <Checkbox
+                                                        checked={data.skills.includes(
+                                                            topic.topic
+                                                        )}
+                                                        onChange={handleSkills("skills")}
+                                                    />
+                                                }
+                                                label={topic.topic}
+                                            />
+                                        ))}
+                                        </Grid>
+                                    </Grid>
+                                ) : "" }
+                            {/* If field of care is selected 'Child care'  */}
+                                {data.care == 'child' ? (
+                                    <Grid container sx={{margin: 2}}>
+                                        <Grid item md={12} xs={12}>
+                                            <Typography variant="h6">Child Care Topic</Typography>
+                                            {props.childCareTopics.map(topic=>(
+                                                <FormControlLabel
+                                                    key={topic.id}
+                                                    value={topic.topic}
+                                                    control={
+                                                        <Checkbox
+                                                            checked={data.skills.includes(
+                                                                topic.topic
+                                                            )}
+                                                            onChange={handleSkills("skills")}
+                                                        />
+                                                    }
+                                                    label={topic.topic}
+                                                />
+                                            ))}
+                                        </Grid>
+                                    </Grid>
+                                ) : ''}
+                            {/* If field of care is selected 'Elder care and Child care' */}
+                                {data.care == 'elder_child' ? (
+                                    <Grid container sx={{margin: 2}}>
+                                        <Grid item md={6} xs={12}>
+                                            <Typography variant="h6">Elder Care Topic</Typography>
+                                            {props.elderCareTopics.map(topic=>(
+                                                <FormControlLabel
+                                                    key={topic.id}
+                                                    value={topic.topic}
+                                                    control={
+                                                        <Checkbox
+                                                            checked={data.skills.includes(
+                                                                topic.topic
+                                                            )}
+                                                            onChange={handleSkills("skills")}
+                                                        />
+                                                    }
+                                                    label={topic.topic}
+                                                />
+                                            ))}
+                                        </Grid>
+                                        <Grid item md={6} xs={12}>
+                                            <Typography variant="h6">Child Care Topic</Typography>
+                                            {props.childCareTopics.map(topic=>(
+                                                <FormControlLabel
+                                                    key={topic.id}
+                                                    value={topic.topic}
+                                                    control={
+                                                        <Checkbox
+                                                            checked={data.skills.includes(
+                                                                topic.topic
+                                                            )}
+                                                            onChange={handleSkills("skills")}
+                                                        />
+                                                    }
+                                                    label={topic.topic}
+                                                />
+                                            ))}
+                                        </Grid>
+                                    </Grid>
+                                ) : ''}
+     
+                        <Divider />
                         <Button
                             style={styles.button}
                             variant="contained"
@@ -292,6 +357,6 @@ export default function CreateCaregiver(props) {
 }
 const styles = {
     button: {
-        margin: 15,
+        margin: 13,
     },
 };

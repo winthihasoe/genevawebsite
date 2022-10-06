@@ -12,8 +12,8 @@ class CreateBookingDetailsTable extends Migration
         
         Schema::create('booking_details', function (Blueprint $table) {
             $table->primary(['booking_id', 'caregiver_id']);
-            $table->foreignId('booking_id')->constrained('bookings');
-            $table->foreignId('caregiver_id')->constrained('caregivers');
+            $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
+            $table->foreignId('caregiver_id')->nullable()->constrained('caregivers');
             $table->integer('patient_age');
             $table->string('needs');
             $table->string('level');

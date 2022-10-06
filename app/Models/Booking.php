@@ -11,9 +11,18 @@ class Booking extends Model
 
     protected $fillable = [
         'user_id',
+        'patient_name',
+        'address',
+        'city',
+        'phone',
         'start_date',
         'end_date',
         'care',
         'duty',
     ];
+
+    public function bookingDetail()
+    {
+        return $this->hasOne(BookingDetail::class);
+    }
 }

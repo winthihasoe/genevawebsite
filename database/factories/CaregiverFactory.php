@@ -17,12 +17,15 @@ class CaregiverFactory extends Factory
             'name'=>$this->faker->name(),
             'age'=>$this->faker->numberBetween(18, 30),
             'weight'=>$this->faker->numberBetween(100, 170),
-            'height'=>$this->faker->numberBetween(130, 170),
+            'height'=>$this->faker->numberBetween(4.0, 6.0),
             'address'=>$this->faker->address(),
+            'location' => 'mdy',
+            'phone' => $this->faker->phoneNumber(),
             'join_date'=>$this->faker->date(),
-            'level'=>$this->faker->text(5), 
-            'phone'=>$this->faker->phoneNumber(),
-            // 'skills'=>$this->faker->array(['personal care', 'swaddling', 'bottle feeding'])
+            'level'=>'skilled', 
+            'care'=>'elder',
+            'skills' => ['Oxygen therapy', 'Diaper change', 'Personal Hygiene', 'Drip'],
+            'image' =>'633bd8ca0a0ae_81166972.jpg',
         ];
     }
 }

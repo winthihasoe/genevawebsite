@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    // Show all users 
+    public function index()
+    {
+        return Inertia::render('Admin/Users', [
+            'users' => User::get(),
+        ]);
+    }
     // Show edit user
     public function edit()
     {

@@ -169,7 +169,7 @@ export default function Authenticated({ auth, children }) {
             </nav>
             <div className="main-content-container">
                 <Sidebar />
-                <main className="main-content">{children}</main>
+                {children}
             </div>
         </div>
     );

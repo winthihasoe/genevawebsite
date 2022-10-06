@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminLayoutController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CaregiverController;
+use App\Http\Controllers\ChildCareTopicController;
+use App\Http\Controllers\ElderCareTopicController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,10 +34,28 @@ Route::prefix('admin')->middleware(['is_editor'])->group(function(){
     Route::get('/dashboard', [AdminLayoutController::class, 'dashboard'])->name('dashboard');
     Route::get('/create-caregiver', [CaregiverController::class, 'create'])->name('createCaregiver');
     Route::post('/create-caregiver', [CaregiverController::class, 'store']);
+    // Route::delete('/caregiver/{id}', [CaregiverController::class, 'destroy'])->name('destroyCaregiver');
     Route::get('/caregivers', [CaregiverController::class, 'index'])->name('caregivers');
+    Route::get('/add-elder-skills', [ElderCareTopicController::class, 'index'])->name('showElderSkill');
+    Route::post('/add-new-elder-skill', [ElderCareTopicController::class, 'store'])->name('addNewElderSkill');
+    Route::delete('/delete-elder-skill/{id}', [ElderCareTopicController::class, 'destroy'])->name('destroyElderSkill');
+    Route::get('/add-child-skills', [ChildCareTopicController::class, 'index'])->name('showChildSkill');
+    Route::post('/add-new-child-skill', [ChildCareTopicController::class, 'store'])->name('addNewChildSkill');
+    Route::delete('/delete-child-skill/{id}', [ChildCareTopicController::class, 'destroy'])->name('destroyChildSkill');
+    Route::get('/all-bookings', [BookingController::class, 'index'])->name('allBooking');
+    Route::get('/booking/{id}', [BookingController::class, 'show'])->name('showBooking');
+
+   
+    
 });
 
 // ---------------------  Admin ---------------------- 
+Route::prefix('admin')->middleware(['is_admin'])->group(function (){
+    
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+});
+
+
 
 require __DIR__.'/auth.php';
 

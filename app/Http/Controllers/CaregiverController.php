@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCaregiverRequest;
 use App\Http\Requests\UpdateCaregiverRequest;
 use App\Models\Caregiver;
+use App\Models\ChildCareTopic;
+use App\Models\ElderCareTopic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,12 @@ class CaregiverController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/CreateCaregiver');
+        $elderCareTopics = ElderCareTopic::get();
+        $childCareTopics = ChildCareTopic::get();
+        return Inertia::render('Admin/CreateCaregiver', [
+            'elderCareTopics' => $elderCareTopics,
+            'childCareTopics' => $childCareTopics,
+        ]);
     }
 
     /**
@@ -100,9 +107,7 @@ class CaregiverController extends Controller
         $care = $request->care;
         
         $caregiver = Caregiver::find($caregiver);
-        // if ($request->has('invitee')) {
-        //     $user->invitee = $request->input('invitee');
-        //  }
+       
         return Inertia::render('Caregiver', [
             'caregiver' => $caregiver, 'care' => $care
         ]);
@@ -137,8 +142,8 @@ class CaregiverController extends Controller
      * @param  \App\Models\Caregiver  $caregiver
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Caregiver $caregiver)
+    public function destroy($id)
     {
-        //
+       //
     }
 }

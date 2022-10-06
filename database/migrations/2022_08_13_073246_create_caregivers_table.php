@@ -25,6 +25,8 @@ class CreateCaregiversTable extends Migration
             $table->string('image');
             $table->tinyInteger('rating')->nullable();
             $table->string('review')->nullable();
+            $table->boolean('is_available')->default(true);
+            $table->boolean('is_resign')->default(false);
             $table->timestamps();
         });
     }

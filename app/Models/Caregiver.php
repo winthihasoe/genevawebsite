@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\CaregiverFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,11 +26,9 @@ class Caregiver extends Model
         'rating',
         'review',
         'care',
+        'is_available',
+        'is_resign',
     ];
-
-    public function skill (){
-        return $this->belongsTo(Skill::class);
-    }
 
     protected $casts = [
         'skills' => 'array'

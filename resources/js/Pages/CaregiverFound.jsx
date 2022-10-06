@@ -50,6 +50,9 @@ export default function CaregiverFound(props) {
                     <Link href='/login'>
                       <Button variant='contained' color='secondary'>Login</Button>
                     </Link>
+                    <Link href='/register'>
+                      <Button variant='contained' color='secondary'>Register</Button>
+                    </Link>
                   </Box>    
                 }
                 

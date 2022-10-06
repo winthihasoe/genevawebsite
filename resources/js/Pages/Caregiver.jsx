@@ -1,18 +1,23 @@
-import { Head, Link } from '@inertiajs/inertia-react';
-import { Paper, Typography, Box, Grid, Chip, Divider, Button } from '@mui/material'
-import { Stack } from '@mui/system';
-import React from 'react'
+import UserLayout from '@/Layouts/UserLayout';
+import { Head, Link, usePage } from '@inertiajs/inertia-react';
+import { Paper, Typography, Box, Grid, Chip, Divider, Button, Modal } from '@mui/material'
+import React, { useState } from 'react'
+
 
 
 export default function Caregiver({caregiver, care}) {
+    // const [open, setOpen] = React.useState(false);
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
   return (
-    <>
+    <UserLayout>
     <Head title={`${caregiver.name}`} />
+        
         <Box maxWidth='md' sx={{ padding: 2, margin: 'auto'}}>
             <Paper elevation={16} sx={{ padding: 5 }}>
                
                 <Typography variant='h6' gutterBottom>
-                    Name: {caregiver.name}
+                    Caregiver name: {caregiver.name}
                 </Typography>
             
 
@@ -21,14 +26,14 @@ export default function Caregiver({caregiver, care}) {
                 </Box>
 
                 <Typography gutterBottom>
-                    <b>Skill:</b> 
+                    <b>{caregiver.name}</b>  can do the following skills:
                 </Typography>
 
-                <Stack direction={{xs: 'column', sm: 'row', md: 'row'}} spacing={1} sx={{marginBottom:2}}>
-                    {caregiver.skills.map(skill=>(
+                {caregiver.skills.map(skill=>(
+                    <Box sx={{ padding: 1, display: 'inline-block'}}>
                         <Chip label={skill} />
-                    ))}
-                </Stack>
+                    </Box>
+                ))}
                     
                 <Typography paragraph gutterBottom>
                     <b>Field of care: {caregiver.care === 'elder' ? 'Elder Care' : ''} {caregiver.care === 'child' ? 'Child Care' : ''} {caregiver.care === 'elder_child' ? 'Elder Care & Child Care' : ''} </b>
@@ -66,9 +71,43 @@ export default function Caregiver({caregiver, care}) {
                     <Link href={route('booking',  {'id': caregiver.id,'care': care})} as='button' type='button'>
                        Book Now
                     </Link>
+                    {/* <Button onClick={handleOpen} >Delete</Button> */}
                 </Box>
+                {/* <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Are you sure to want to delete <b>{caregiver.name}</b>?
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        This action is irreversiable.
+                    </Typography>
+                    <Box textAlign="center">
+                        <Button onClick={()=>setOpen(false)}>Cancel</Button>{" "}
+                        <Link as='button' method='delete' href='#'>Yes</Link>
+                    </Box>
+                    </Box>
+                </Modal> */}
             </Paper>
+            
         </Box>
-    </>
+    </UserLayout>
   )
 }
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    borderRadius: 5,
+    boxShadow: 24,
+    p: 4,
+  };

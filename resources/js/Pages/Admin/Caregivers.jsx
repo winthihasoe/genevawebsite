@@ -13,12 +13,7 @@ export default function Caregivers(props) {
             {/* Plan --- Card or List show style  */}
 
             <Container
-                sx={{
-                    p: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
+                maxWidth="md"
             >
                 <div className="title">
                     <Typography variant="h4">Caregivers</Typography>

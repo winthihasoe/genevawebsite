@@ -22,4 +22,5 @@ class BookingDetail extends Model
     protected $casts = [
         'needs' => 'array'
     ];
+
 }

@@ -10,6 +10,15 @@ use Inertia\Inertia;
 
 class BookingController extends Controller
 {
+    public function index()
+    {
+        $bookings = Booking::get();
+        return Inertia::render('Admin/AllBookings', [
+            'bookings' => $bookings,
+        ]);
+    }
+
+    // Show booking forms according to customer choose whether Care is Elder or Child 
     public function booking($id, Request $request)
     {
        
@@ -27,7 +36,7 @@ class BookingController extends Controller
             ]);
         } else {
             // Returning a 404 page
-            return null;
+            return back();
         }
         
     }
@@ -39,6 +48,10 @@ class BookingController extends Controller
 
         Booking::create([
             'user_id'=>$user_id,
+            'patient_name' => $request->patient_name,
+            'address' => $request->address,
+            'city' => $request->city,
+            'phone' => $request->phone,            
             'start_date'=>$request->startDate,
             'end_date'=>$request->endDate,
             'care' => $request->care,
@@ -66,11 +79,24 @@ class BookingController extends Controller
         // After returning or redirecting, prevent user return back to previous FinishBooking page for double entery booking.
     }
 
+    // Confirmation page for after fullfilled the booking form
     public function finishBooking(Request $request)
     {
         $data = $request->values;
         return Inertia::render('FinishBooking', [
             'data' => $data,
+        ]);
+    }
+
+    // Show custom booking according to id
+    public function show($id)
+    {
+        $bookingDetail = Booking::find($id)->bookingDetail;
+        $bookedCaregiver = Caregiver::find($bookingDetail->caregiver_id);
+        return Inertia::render('Admin/ShowBookingDetail', [
+            'booking' => Booking::find($id),
+            'bookingDetail' => $bookingDetail,
+            'bookedCaregiver' => $bookedCaregiver,
         ]);
     }
 }

@@ -3,19 +3,14 @@
 @tailwind utilities;
 
 .app {
-    background: linear-gradient(
-        106.37deg,
-        #c59cf1 29.63%,
-        #c66ff8 51.55%,
-        #dc3ff8 90.85%
-    );
+    background: rgb(231, 231, 231);
 
     font-family: "Inter", sans-serif;
 }
 
 .sidebar {
     height: 91vh;
-    min-width: 150px;
+    min-width: 170px;
 }
 
 .sidebarList {
@@ -26,7 +21,7 @@
 
 .sidebarList .row {
     width: 100%;
-    height: 50px;
+    height: 45px;
     list-style-type: none;
     margin: 0;
     display: flex;
@@ -38,13 +33,13 @@
 
 .sidebarList .row:hover {
     cursor: pointer;
-    background-color: #bf91f1;
+    border: 1px solid #cfaaf7;
     border-radius: 1rem;
 }
 
 .sidebarList #active {
-    background-color: #cfaaf7;
     border-radius: 1rem;
+    border: 1px solid #cfaaf7;
 }
 
 .row {

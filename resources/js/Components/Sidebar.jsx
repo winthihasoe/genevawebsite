@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/app.css";
 import { SidebarData } from "@/Components/SidebarData";
-import { Link } from "@inertiajs/inertia-react";
+import { Link, usePage } from "@inertiajs/inertia-react";
 
 function Sidebar() {
     return (
@@ -9,9 +9,9 @@ function Sidebar() {
             <ul className="sidebarList">
                 {SidebarData.map((val, key) => {
                     return (
-                        <Link href={val.link}>
+                        <Link href={val.link} key={key}>
                             <li
-                                key={key}
+                                
                                 className="row"
                                 id={
                                     window.location.pathname == val.link
@@ -20,6 +20,7 @@ function Sidebar() {
                                 }
                             >
                                 {" "}
+                                
                                 <div id="icon">{val.icon}</div>{" "}
                                 <div id="title">{val.title}</div>
                             </li>

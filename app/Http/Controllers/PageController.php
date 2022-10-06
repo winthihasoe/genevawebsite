@@ -24,7 +24,7 @@ class PageController extends Controller
 
     public function startElderCare()
     {
-        return Inertia::render('StartElderCare');
+        return Inertia::render('ElderCareStartFromHome');
     }
 
     // Choose caregiver page is followed to child care request form 

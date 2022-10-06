@@ -16,7 +16,6 @@ const theme = createTheme({
 });
 
 export default function ElderCare(props) {
-    //This id is the caregiver id for patient booking
     const bookedCaregiver = props.bookedCaregiver;
     return (
         <>

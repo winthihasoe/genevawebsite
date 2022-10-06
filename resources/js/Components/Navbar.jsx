@@ -60,6 +60,18 @@ function DrawerAppBar(props) {
                             <Typography textAlign='center'>Profile</Typography>
                         </Link>
                 </Box>
+                {auth.user.is_admin == 1 ? (
+                <Box sx={{ marginTop: 2 }}>
+                        <Link as="div" href={route('dashboard')}>
+                            <Typography textAlign='center'>Admin Page</Typography>
+                        </Link>
+                </Box> ) : ''}
+                {auth.user.is_editor == 1 ? (
+                <Box sx={{ marginTop: 2 }}>
+                        <Link as="div" href={route('dashboard')}>
+                            <Typography textAlign='center'>Editor Page</Typography>
+                        </Link>
+                </Box> ) : ''}
                 <Box sx={{ marginTop: 2 }}>
                     <Button color="secondary" variant="outlined">
                         <Link as="div" method="post" href={route('logout')}>
@@ -137,7 +149,7 @@ function DrawerAppBar(props) {
                         <Box sx={{ flexGrow: 0, display: {xs: 'none', sm: 'block'} }}>
                             <Tooltip title='Setting'>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt='user' src="/images/cover.jpg" />
+                                <Avatar alt='user' src="/images/user.png" />
                             </IconButton>
                             </Tooltip>
                             <Menu
@@ -162,6 +174,22 @@ function DrawerAppBar(props) {
                                         <Typography textAlign="center">Profile</Typography>
                                     </Link>
                                 </MenuItem>
+                                {/* Link to Editor Page if the user is Editor  */}
+                                {auth.user.is_editor == 1 ? (
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link href={route('dashboard')}>
+                                        <Typography textAlign='center'>Editor</Typography>
+                                    </Link>
+                                </MenuItem> ) : ''}
+                                {/* Link to Admin Page if the user is Admin  */}
+                                {auth.user.is_admin == 1 ? (
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link href={route('dashboard')}>
+                                        <Typography textAlign='center'>Admin</Typography>
+                                    </Link>
+                                </MenuItem> ) : ''}
+
+                                
                             
                                 <MenuItem>
                                     <Link method="post" as="button" href={route('logout')}>
