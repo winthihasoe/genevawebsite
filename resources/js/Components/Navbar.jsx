@@ -56,6 +56,11 @@ function DrawerAppBar(props) {
                 </ListItem> */}
                 
                 <Box sx={{ marginTop: 2 }}>
+                        <Link as="div" href={route('userBookings')}>
+                            <Typography textAlign='center'>My Bookings</Typography>
+                        </Link>
+                </Box>
+                <Box sx={{ marginTop: 2 }}>
                         <Link as="div" href={route('user.edit')}>
                             <Typography textAlign='center'>Profile</Typography>
                         </Link>
@@ -147,9 +152,10 @@ function DrawerAppBar(props) {
                     </Box>
                     {auth.user ? (
                         <Box sx={{ flexGrow: 0, display: {xs: 'none', sm: 'block'} }}>
-                            <Tooltip title='Setting'>
+                            <Tooltip title='Account setting'>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt='user' src="/images/user.png" />
+                                {auth.user.profile_photo ? <Avatar alt='user' src={`/images/profiles/${auth.user.profile_photo}`} /> : <Avatar alt='user' src="/images/user.png" />}
+                                
                             </IconButton>
                             </Tooltip>
                             <Menu
@@ -168,6 +174,11 @@ function DrawerAppBar(props) {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link href={route('userBookings')}>
+                                        <Typography textAlign="center">My Bookings</Typography>
+                                    </Link>
+                                </MenuItem>
                             
                                 <MenuItem onClick={handleCloseUserMenu}>
                                     <Link href={route('user.edit')}>

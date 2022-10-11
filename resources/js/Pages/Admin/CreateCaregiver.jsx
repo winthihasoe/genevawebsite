@@ -1,6 +1,6 @@
 import * as React from "react";
 import Authenticated from "@/Layouts/Authenticated";
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 import Box from "@mui/joy/Box";
 import {
     Button,
@@ -24,14 +24,13 @@ import {
 } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { Stack } from "@mui/system";
-import LoupeIcon from '@mui/icons-material/Loupe';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import DoNotDisturbSharpIcon from '@mui/icons-material/DoNotDisturbSharp';
+
 
 export default function CreateCaregiver(props) {
     const { data, setData, post, progress, errors } = useForm({
         name: "",
         age: "",
+        gender: "",
         weight: "",
         height: "",
         address: "",
@@ -44,8 +43,6 @@ export default function CreateCaregiver(props) {
         care: "",
         newSkill: "",
     });
-
-    const [toggleAddNewSkill, setToggleAddNewSkill] = React.useState(false);
     
     function handleChange(event) {
         const { name, value } = event.target;
@@ -80,6 +77,8 @@ export default function CreateCaregiver(props) {
         post(route('addNewSkill'), data.newSkill);
         setData({...data, newSkill: ""});
     }
+
+    console.log(data);
 
     return (
         <Authenticated auth={props.auth} errors={props.errors}>
@@ -124,6 +123,22 @@ export default function CreateCaregiver(props) {
                                 value={data.age}
                                 onChange={handleChange}
                             />
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="gender">Gender</InputLabel>
+                            <Select
+                                labelId="gender"
+                                id="gender"
+                                value={data.gender}
+                                label="Gender"
+                                name="gender"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={"male"}>Male</MenuItem>
+                                <MenuItem value={"female"}>Female</MenuItem>
+                                
+                            </Select>
+                            </FormControl>
+
 
                             <TextField
                                 label="Weight"

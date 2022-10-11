@@ -5,12 +5,20 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CaregiverController;
 use App\Http\Controllers\ChildCareTopicController;
 use App\Http\Controllers\ElderCareTopicController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // --------------------- Guest ---------------------- 
-Route::get('/', [PageController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'prevent-back-history'],function(){
+	// Auth::routes();
+    Route::get('/', [PageController::class, 'index'])->name('home');
+});
+
+
 
 // --------------------- Customer -------------------
 Route::middleware(['auth'])->group(function () {
@@ -19,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/start-child-care', [PageController::class, 'startChildCare'])->name('startChildCare');
     Route::get('/start-elder-care', [PageController::class, 'startElderCare'])->name('startElderCare');
     Route::get('/child-care/choose-caregiver', [PageController::class, 'chooseCaregiver'])->name('chooseCaregiver');
+    Route::get('/user-bookings', [BookingController::class, 'userBookings'])->name('userBookings');
+    Route::get('/user-bookings/{id}', [BookingController::class, 'userBookingDetail'])->name('userBookingDetail');
+    Route::put('/user-bookings/eidt/{id}', [BookingController::class, 'editUserBookingDetail'])->name('editUserBookingDetail');
 });
 
 // Start from Hero section form
@@ -55,6 +66,8 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function (){
     Route::get('/users', [UserController::class, 'index'])->name('users');
 });
 
+// ---------------------  Route for mailing ----------------------
+Route::get('/email', [MailController::class, 'sendBookingConfirmMail'])->name('sendBookingConfirmMail');
 
 
 require __DIR__.'/auth.php';

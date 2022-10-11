@@ -22,33 +22,39 @@ export class Address extends Component {
                         variant="standard"
                         onChange={handleChange("patient_name")}
                         defaultValue={values.patient_name}
+                        required
                     />
                     <TextField
                         label="Address"
                         variant="standard"
                         onChange={handleChange("address")}
                         defaultValue={values.address}
+                        required
                     />
                     <TextField
                         label="City"
                         variant="standard"
                         onChange={handleChange("city")}
                         defaultValue={values.city}
+                        required
                     />
                     <TextField
                         label="Phone No."
                         variant="standard"
                         onChange={handleChange("phone")}
                         defaultValue={values.phone}
+                        required
                     />
                 </div>
-                <Button
-                    style={styles.button}
-                    variant="contained"
-                    onClick={this.continue}
-                >
-                    Continue
-                </Button>
+                {values.patient_name && values.address && values.city && values.phone && 
+                    <Button
+                        style={styles.button}
+                        variant="contained"
+                        onClick={this.continue}
+                    >
+                        Continue
+                    </Button>
+                }
             </Box>
         );
     }

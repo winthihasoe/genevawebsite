@@ -48,13 +48,15 @@ export class ElderAge extends Component {
                 >
                     Back
                 </Button>
-                <Button
-                    style={styles.button}
-                    variant="contained"
-                    onClick={this.continue}
-                >
-                    Continue
-                </Button>
+                { values.elderAge && 
+                    <Button
+                        style={styles.button}
+                        variant="contained"
+                        onClick={this.continue}
+                    >
+                        Continue
+                    </Button>
+                }
             </Box>
         );
     }

@@ -19,6 +19,7 @@ class CreateBookingDetailsTable extends Migration
             $table->string('level');
             $table->integer('price');
             $table->integer('duties')->nullable();
+            $table->string('note_to_caregiver')->nullable();
             $table->timestamps();
         });
     }

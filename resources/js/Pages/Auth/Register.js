@@ -5,6 +5,7 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { InputLabel, TextField } from '@mui/material';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -13,6 +14,7 @@ export default function Register() {
         phone: '',
         password: '',
         password_confirmation: '',
+        image: '',
     });
 
     useEffect(() => {
@@ -31,7 +33,7 @@ export default function Register() {
         post(route('register'));
     };
 
-
+    console.log(data);
     return (
         <Guest>
             <Head title="Register" />
@@ -106,6 +108,19 @@ export default function Register() {
                         className="mt-1 block w-full"
                         handleChange={onHandleChange}
                         required
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <Label id="profile">
+                        Choose a profile picture (optional)
+                    </Label>
+                    <TextField
+                        type="file"
+                        name="image"
+                        onChange={(e) =>
+                            setData("image", e.target.files[0])
+                        }
                     />
                 </div>
 

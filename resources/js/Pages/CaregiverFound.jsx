@@ -1,14 +1,13 @@
 import CaregiverCard from '@/Components/CaregiverCard'
 import UserLayout from '@/Layouts/UserLayout'
 import { Head, Link, usePage } from '@inertiajs/inertia-react'
-import { Button, Typography } from '@mui/material'
+import { Button, Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 
 export default function CaregiverFound(props) {
   const auth = usePage().props.auth;
   
-  console.log(props);
   return (
     <UserLayout auth={auth}>
       <Head title='Caregiver Found' />
@@ -50,6 +49,7 @@ export default function CaregiverFound(props) {
                     <Link href='/login'>
                       <Button variant='contained' color='secondary'>Login</Button>
                     </Link>
+                    {" | "}
                     <Link href='/register'>
                       <Button variant='contained' color='secondary'>Register</Button>
                     </Link>

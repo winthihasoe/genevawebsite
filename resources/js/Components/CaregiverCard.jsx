@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Button, CardActionArea, CardActions, Chip } from "@mui/material";
 import { Box } from "@mui/system";
 import { Link, usePage } from "@inertiajs/inertia-react";
 
@@ -17,17 +17,19 @@ export default function CaregiverCard(props) {
                     <CardActionArea>
                         <Box sx={{height: 140, overflow: 'hidden'}}>
                         <CardMedia
-                            sx={{p: 0.5}}
+                            sx={{p: 0.2}}
                             component="img"
                             image={`/images/profiles/${caregiver.image}`}
                             alt={caregiver.name}
                         />
                         </Box>
-                        <CardContent>
+                        <CardContent sx={{ p: 1 }}>
+                            { caregiver.is_available ? <Chip sx={{ ml : 9 }} color="primary" size="small" label='Available'/> : <Chip sx={{ ml : 9 }} color="error" size="small" label='Occupied' /> }
+        
                             <Typography gutterBottom variant="p" component="div">
                                 {caregiver.name} 
                             </Typography>
-                            <Typography variant="p">{caregiver.level}</Typography>
+                            <Typography variant="p">{caregiver.level} level</Typography>
                         </CardContent>
                     </CardActionArea>
                 </Link>
@@ -36,7 +38,7 @@ export default function CaregiverCard(props) {
                     <Button size="small" color="primary">
                         Show more
                     </Button>
-                </CardActions>   
+                </CardActions>  
             </Card>
     );
 }

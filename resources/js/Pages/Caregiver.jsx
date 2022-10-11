@@ -6,9 +6,7 @@ import React, { useState } from 'react'
 
 
 export default function Caregiver({caregiver, care}) {
-    // const [open, setOpen] = React.useState(false);
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
+  
   return (
     <UserLayout>
     <Head title={`${caregiver.name}`} />
@@ -67,31 +65,12 @@ export default function Caregiver({caregiver, care}) {
                         <img src={`/images/profiles/${caregiver.image}`} alt='caregiver'/>
                     </Grid>
                 </Grid>
-                <Box sx={{ padding: 2, margin: 2}} textAlign='center'>
+                { caregiver.is_available ? <Box sx={{ padding: 2, margin: 2}} textAlign='center'>
                     <Link href={route('booking',  {'id': caregiver.id,'care': care})} as='button' type='button'>
                        Book Now
                     </Link>
-                    {/* <Button onClick={handleOpen} >Delete</Button> */}
-                </Box>
-                {/* <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Are you sure to want to delete <b>{caregiver.name}</b>?
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        This action is irreversiable.
-                    </Typography>
-                    <Box textAlign="center">
-                        <Button onClick={()=>setOpen(false)}>Cancel</Button>{" "}
-                        <Link as='button' method='delete' href='#'>Yes</Link>
-                    </Box>
-                    </Box>
-                </Modal> */}
+                </Box>: <Box textAlign='center'>Caregiver is on duty is now. You can book when the caregiver is available.</Box> }
+                
             </Paper>
             
         </Box>

@@ -41,12 +41,14 @@ export class Duration extends Component {
                             value={values.startDate}
                             onChange={handleDate("startDate")}
                             renderInput={(params) => <TextField {...params} />}
+                            
                         />
                         <MobileDatePicker
                             label="Ending Date"
                             value={values.endDate}
                             onChange={handleDate("endDate")}
                             renderInput={(params) => <TextField {...params} />}
+                            
                         />
                     </Box>
                     <Box sx={{mt: 3}}>
@@ -59,6 +61,7 @@ export class Duration extends Component {
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
                                 onChange={handleChange("dutyAssign")}
+                                
                             >
                                 <FormControlLabel
                                     value="day"
@@ -86,13 +89,15 @@ export class Duration extends Component {
                 >
                     Back
                 </Button>
-                <Button
-                    style={styles.button}
-                    variant="contained"
-                    onClick={this.continue}
-                >
-                    Continue
-                </Button>
+                { values.startDate && values.endDate && values.dutyAssign &&
+                    <Button
+                        style={styles.button}
+                        variant="contained"
+                        onClick={this.continue}
+                    >
+                        Continue
+                    </Button>
+                }
             </Box>
         );
     }

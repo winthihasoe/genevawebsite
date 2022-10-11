@@ -19,6 +19,7 @@ class Booking extends Model
         'end_date',
         'care',
         'duty',
+        'caregiver_photo',
     ];
 
     public function bookingDetail()

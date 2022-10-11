@@ -24,6 +24,7 @@ class CreateBookingsTable extends Migration
             $table->string('end_date')->nullable();
             $table->string('care');
             $table->string('duty');
+            $table->string('caregiver_photo')->nullable();
             $table->timestamps();
         });
     }

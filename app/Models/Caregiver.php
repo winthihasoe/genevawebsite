@@ -14,6 +14,7 @@ class Caregiver extends Model
         'name',
         'nrc',
         'age',
+        'gender',
         'weight',
         'height',
         'address',        

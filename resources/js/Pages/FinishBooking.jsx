@@ -7,14 +7,18 @@ import React from 'react'
 export default function FinishBooking(props) {
 
   // Receiving data and setData for new adding data like duties price and number of duites.
-  const {data, setData, post, error} = useForm(props.data);
+  const {data, setData, post, error} = useForm({
+    ...props.data,
+  });
+ 
+ 
 
   // Handling the submit action to final booking stage, this is post method to store bookings and booking_detail migration table
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     post(route('storeBooking'), data);
   }
-
+  console.log(data);
   return (
     <UserLayout>
       <Head title='Recheck detail' />
@@ -105,7 +109,7 @@ export default function FinishBooking(props) {
 
                       <Box sx={{ margin: 2}} textAlign='center'>
                         <Typography variant='p'>
-                          <b>Price {data.level == 'semi' ? 14000 : ''} {data.level == 'skilled' ? 18000 : ''} {data.level == 'advanced' ? 22000 : ''}</b> MMK for 1 duty.
+                          <b>Price {data.level == 'semi' ? 16000 : ''} {data.level == 'skilled' ? 20000 : ''} {data.level == 'advanced' ? 24000 : ''}</b> MMK for 1 duty.
                         </Typography>
                       </Box>
 

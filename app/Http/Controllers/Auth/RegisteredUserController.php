@@ -41,11 +41,16 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $image = request('image');
+        $image_name = uniqid().'_'.$image->getClientOriginalName();
+        $image->move(public_path('images/profiles'),$image_name);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'profile_photo' => $image_name,
         ]);
 
         event(new Registered($user));

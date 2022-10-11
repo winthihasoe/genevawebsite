@@ -28,11 +28,15 @@ export default function ElderCare(props) {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
+                            
                         }}
                     >
-                        <Typography variant="h3">Please fill Form</Typography>
+                        <Typography variant="h6">Elder Care</Typography>
                         <Typography variant="overline">We care for your <b>love One</b></Typography>
+                        
+
                         <ElderForm bookedCaregiver={bookedCaregiver} />
+                        <Typography variant="overline">Please fill all of your <b>information</b></Typography>
                     </Box>
                 </ThemeProvider>
             </Container>

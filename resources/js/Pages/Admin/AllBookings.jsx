@@ -10,12 +10,14 @@ import { Link } from '@inertiajs/inertia-react';
 export default function AllBookings(props) {
     const bookings = props.bookings;
     
-    console.log(bookings);
     return (
         <Authenticated auth={props.auth} errors={props.errors}>
             <Container maxWidth='lg'>
                 <Typography variant='h6' gutterBottom>
                     All Bookings
+                </Typography>
+                <Typography variant='overline' gutterBottom>
+                    Bookings are arranged in order of last booking to first.
                 </Typography>
                 <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650}} aria-label="caption table">

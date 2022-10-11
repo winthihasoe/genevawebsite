@@ -1,22 +1,27 @@
 import Authenticated from '@/Layouts/Authenticated'
 import { Box, Container, Divider, Paper, Typography, Stack, Chip } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function ShowBookingDetail(props) {
     const booking = props.booking;
     const bookingDetail = props.bookingDetail;
     const bookedCaregiver = props.bookedCaregiver;
+    
     return (
         <Authenticated auth={props.auth} error={props.error}>
             <Container maxWidth="md">
+                <Link href={route('allBooking')}>
+                    <KeyboardBackspaceRoundedIcon /> <Typography variant='overline'>back</Typography>
+                </Link>
                 <Paper elevation={12} sx={{ p: 4, mt:2 }}>
                     <Typography variant='h4' gutterBottom>
                         Booking Detail
                     </Typography>
-                    <Divider variant='unset' />
                     <Box sx={{ m: 2 }}>
                         <Typography variant='p' gutterBottom>
-                            Patient name: {booking.patient_name}
+                            Patient name: <b>{booking.patient_name}</b>
                         </Typography>
 
                         <Divider />
@@ -48,6 +53,27 @@ export default function ShowBookingDetail(props) {
                                 </Box>
                             ))}
                         </Box>
+                        <Divider />
+
+                        { bookingDetail.note_to_caregiver && <Box sx={{ width: '100%', p: 2, border: '1px solid #000000', marginBottom: 2 }}>
+                        <Typography component='div' gutterBottom>
+                          Patient notes to caregiver
+                        </Typography>
+                        <Typography variant='p' gutterBottom>
+                          <b>{ bookingDetail.note_to_caregiver }</b>
+                        </Typography>
+                      </Box>
+                      }
+
+                        <Typography variant='p' gutterBottom>
+                            Booking Start Date: {booking.start_date.slice(0, 10)}
+                        </Typography>
+                        <Divider />
+
+                        <Typography variant='p' gutterBottom>
+                            Booking End Date: {booking.end_date.slice(0, 10)}
+                        </Typography>
+
                         <Divider />
 
                         <Typography variant='h6' gutterBottom>

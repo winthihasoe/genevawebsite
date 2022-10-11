@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Caregiver;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class PageController extends Controller
@@ -31,4 +34,6 @@ class PageController extends Controller
     public function chooseCaregiver () {
         return Inertia::render('ChooseCaregiver');
     }
+
+    
 }

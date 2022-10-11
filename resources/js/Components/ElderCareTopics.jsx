@@ -86,10 +86,11 @@ export class ElderCareTopics extends Component {
                     >
                         Back
                     </Button>
-
-                   <Link href={route('finishBooking', {values})}>
-                        <Button variant="contained" style={styles.button}>Finish</Button>
-                   </Link>
+                    { values.elderCareTopics[0] && 
+                        <Link href={route('finishBooking', {values})}>
+                                <Button variant="contained" style={styles.button}>Finish</Button>
+                        </Link>
+                    }
                 </Box>
                 <p>This is final step of booking, Thank you.</p>
             </>
