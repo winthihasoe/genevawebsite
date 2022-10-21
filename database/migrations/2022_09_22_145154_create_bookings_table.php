@@ -25,6 +25,9 @@ class CreateBookingsTable extends Migration
             $table->string('care');
             $table->string('duty');
             $table->string('caregiver_photo')->nullable();
+            $table->boolean('is_duty')->default(false); // Whether the duty is start or not
+            $table->boolean('is_complete')->default(false); // Whether the case is complete or not
+            $table->timestamp('booking_created_at')->useCurrent();
             $table->timestamps();
         });
     }

@@ -1,40 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { usePage, useForm, Head } from '@inertiajs/inertia-react';
 import UserLayout from '@/Layouts/UserLayout';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Grid, TextField, Box } from '@mui/material';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
 import { Container } from '@mui/system';
+
 
 export default function Edit (props) {
   const { user } = usePage().props.auth;
-  const { data, setData, put, errors} = useForm({
+  const [selectedImage, setSelectedImage] = useState([]);
+  const { data, setData, post, errors} = useForm({
     name: user.name,
     email: user.email,
     phone: user.phone,
+    image: "",
     // need to change user password 
-  })
+  });
+
+  const onSelectFile = (e) => {
+      const selectedOneImage = e.target.files[0];
+      const selectedFile = e.target.files;
+      const selectedFileArray = Array.from(selectedFile);
+      const imageArray = selectedFileArray.map(file => {
+          return URL.createObjectURL(file);
+      });
+      setSelectedImage(imageArray);
+      setData({...data, image: selectedOneImage});
+  }
 
   const onHandleChange = (event) => {
     const {name, value} = event.target;
     setData({...data, [name] : value});
   };
 
-
-  const submit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    put(route('user.update', user.id), data);
+    post(route('user.update', user.id), data);
+    setSelectedImage("");
   };
 
   return (
     <UserLayout>
       <Head title={`${user.name}`} />
       <Container maxWidth='xs'>
-                <Typography variant='h3'>{user.name}</Typography>
-                <ValidationErrors errors={errors} />
+          
+              <Typography variant='h3'>{user.name}</Typography>
+           
+              {/* If admin select a photo, Add photo button disappear  */}
+                             
+                <Box>
+                    {selectedImage.length == 1 ?  
+                        selectedImage.map((image)=> (
+                                <Box sx={{ margin: 3 }}>
+                                    <img src={image} alt="elder training photo"/>
+                                    <Button onClick={() => setSelectedImage("")}>Delete image</Button>
+                                </Box>))
+                                : (
+                                  <Box sx={{ width: 250, margin: 3, display: 'inline-block'}}>
+                                      <img src={`/images/profiles/${user.profile_photo}`} alt="elder training photo"/>
+                                  </Box>)
+                    }
+                </Box>
 
-                <form onSubmit={submit}>
+                {/* If admin select more than 1 photo, describe the following text  */}
+                { selectedImage.length > 1 && <div>Please select only one photo</div>}
+                { errors && errors.post_image}
+          
+                { selectedImage.length < 1 &&
+                <label variant='outlined' className='change-photo'>
+                    Change photo
+                    <input className='add-photo-input' type='file' name="images" multiple onChange={onSelectFile} accept="image/png, image/jpeg, image/webp" />
+                </label>}
+                
                     <div>
                         <Label forInput="name" value="Name" />
 
@@ -76,13 +114,18 @@ export default function Edit (props) {
                             required
                         />
                     </div>
+
                     <div className='mt-4'>
-                        <Button className="ml-4" type='submit' variant='outlined' fullWidth>
+                        <Button className="ml-4" onClick={handleSubmit} variant='contained' fullWidth>
                             Update
                         </Button>
                     </div>
+                    <div className='mt-4'>
+                        <Button className="ml-4" href={route('home')} variant='outlined' fullWidth>
+                            Cancel
+                        </Button>
+                    </div>
                         
-                </form>
         </Container>
     </UserLayout>
   );

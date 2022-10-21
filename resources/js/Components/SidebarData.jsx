@@ -9,13 +9,14 @@ import SignLanguageRoundedIcon from '@mui/icons-material/SignLanguageRounded';
 import BabyChangingStationRoundedIcon from '@mui/icons-material/BabyChangingStationRounded';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import PermContactCalendarRoundedIcon from '@mui/icons-material/PermContactCalendarRounded';
-import { usePage } from "@inertiajs/inertia-react";
+import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
+import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 
 
 
 export const SidebarData = [
     {
-        title: "Home",
+        title: "Dashboard",
         icon: <HomeIcon />,
         link: "/admin/dashboard",
     },
@@ -45,23 +46,33 @@ export const SidebarData = [
         link: "/admin/all-bookings",
     },
     {
-        title: "Report",
-        icon: <SummarizeIcon />,
-        link: "/admin/reports",
-    },
-    {
         title: "Elder Case",
         icon: <AccessibleIcon />,
-        link: "/admin/elder_case",
+        link: "/admin/elder-cases",
     },
     {
         title: "Child Case",
         icon: <ChildCareIcon />,
-        link: "/admin/child_case",
+        link: "/admin/child-cases",
     },
     {
         title: "Users",
         icon: <PermContactCalendarRoundedIcon />,
         link: "/admin/users",
+    },
+    {
+        title: "Elder Training",
+        icon: <DashboardCustomizeIcon />,
+        link: "/admin/elder-training",
+    },
+    {
+        title: "Child Training",
+        icon: <AutoAwesomeMosaicIcon />,
+        link: "/admin/child-training",
+    },
+    {
+        title: "Report",
+        icon: <SummarizeIcon />,
+        link: "/admin/reports",
     },
 ];

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Caregiver;
+use App\Models\ChildTraining;
+use App\Models\ElderTraining;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,5 +37,19 @@ class PageController extends Controller
         return Inertia::render('ChooseCaregiver');
     }
 
-    
+    // Start from index page OurTraining component after clicking Elder Care Training
+    public function showElderCareTraining()
+    {
+        return Inertia::render('Training/ElderCareTraining', [
+            'elderTrainings' => ElderTraining::get(),
+        ]);
+    }
+
+    // Start from index page OurTraining component
+    public function showChildCareTraining()
+    {
+        return Inertia::render('Training/ChildCareTraining',  [
+            'childTrainings' => ChildTraining::get(),
+        ]);
+    }
 }

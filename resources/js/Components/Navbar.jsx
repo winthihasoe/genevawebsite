@@ -18,7 +18,6 @@ import { Link, usePage } from "@inertiajs/inertia-react";
 
 const drawerWidth = 240;
 const navItems = ["Service", "Training",  "About", "Contact"];
-const settings = ['Profile', 'Booking'];
 
 
 

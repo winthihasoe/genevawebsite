@@ -18,6 +18,7 @@ class CaregiverFactory extends Factory
             'age'=>$this->faker->numberBetween(18, 30),
             'weight'=>$this->faker->numberBetween(100, 170),
             'height'=>$this->faker->numberBetween(4.0, 6.0),
+            'gender'=>'male',
             'address'=>$this->faker->address(),
             'location' => 'mdy',
             'phone' => $this->faker->phoneNumber(),

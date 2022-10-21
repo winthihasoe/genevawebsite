@@ -1,5 +1,5 @@
-import { useForm } from '@inertiajs/inertia-react';
-import { Box, Button, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, TextField, Paper, Typography, TextareaAutosize } from '@mui/material';
+import { Link, useForm } from '@inertiajs/inertia-react';
+import { Box, Button, Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, TextField, Paper, Typography, TextareaAutosize, Stack } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import React from 'react'
@@ -8,6 +8,7 @@ import React from 'react'
 export default function EditUserBookingDetail(props) {
     const userBooking = props.userBooking;
     const userBookingDetail = props.userBookingDetail;
+   
     const { data, setData, put, errors, processing } =useForm({
         ...userBooking,
         ...userBookingDetail,
@@ -62,7 +63,8 @@ export default function EditUserBookingDetail(props) {
 
     console.log(data);
     return (
-        <Paper elevation={10} sx={{ p: 4 }}>
+        <>
+        
             <Typography variant='overline' textAlign='center'>Edit booking</Typography>
             
             <Box component="form"
@@ -240,12 +242,11 @@ export default function EditUserBookingDetail(props) {
                 />
             </Box>
             <Divider />
-            <Box textAlign='center' sx={{ mt: 2}}>
-                <Button variant='outlined'>Cancel</Button> {" | "}
+            <Stack spacing={2} sx={{ mt: 2}}>  
                 <Button variant='contained' color="error" onClick={handleUpdate} disabled={processing}>Update</Button>
-            </Box>
+                <Link as='button' href={route('userBookingDetail', userBooking.id)}>Cancel</Link>
+            </Stack>
+        </>
             
-
-        </Paper>
     )
 }

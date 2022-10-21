@@ -190,4 +190,17 @@ class BookingController extends Controller
         
         return redirect(route('userBookings'))->with('message', 'Your booking is updated!');
     }
+
+    public function bookingToDuty($id)
+    {
+        $bookingToDuty = Booking::find($id);
+       
+        return redirect(route('allBooking'))->with('message', 'Duty started!');
+
+    }
+
+    public function bookingCancelled($id)
+    {
+        //
+    }
 }

@@ -1,24 +1,89 @@
 import Authenticated from '@/Layouts/Authenticated'
-import { Box, Container, Divider, Paper, Typography, Stack, Chip } from '@mui/material'
+import { Box, Container, Divider, Paper, Typography, Stack, Chip, Button, Grid, Modal, Fade, Backdrop } from '@mui/material'
 import React from 'react';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
-import { Link } from '@inertiajs/inertia-react';
+import { Link, useForm } from '@inertiajs/inertia-react';
 
 export default function ShowBookingDetail(props) {
     const booking = props.booking;
     const bookingDetail = props.bookingDetail;
     const bookedCaregiver = props.bookedCaregiver;
-    
+
+    const { data, setData, post, put, error } = useForm({
+        ...booking,
+        ...bookingDetail,
+        ...bookedCaregiver,
+    });
+
+    const startDuty = (e) => {
+        e.preventDefault();
+        post(route('startDuty', booking.id), data);
+    }
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 330,
+        bgcolor: 'background.paper',
+        borderRadius: 3,
+        boxShadow: 24,
+        p: 3,
+        textAlign:'center',
+    };
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+        
     return (
         <Authenticated auth={props.auth} error={props.error}>
             <Container maxWidth="md">
                 <Link href={route('allBooking')}>
                     <KeyboardBackspaceRoundedIcon /> <Typography variant='overline'>back</Typography>
                 </Link>
+                
                 <Paper elevation={12} sx={{ p: 4, mt:2 }}>
-                    <Typography variant='h4' gutterBottom>
-                        Booking Detail
-                    </Typography>
+                    <Grid container>
+                        <Grid item md={6} xs={12}>
+                            <Typography variant='h4' gutterBottom>
+                                Booking Detail
+                            </Typography>
+                        </Grid>
+                        <Grid item md={6} xs={12}>
+                            <Box textAlign='right'>
+                                {booking.is_duty == false && <Button onClick={handleOpen} color='success' variant='contained'>Start Duty</Button>}
+                                <Modal
+                                    aria-labelledby="transition-modal-title"
+                                    aria-describedby="transition-modal-description"
+                                    open={open}
+                                    onClose={handleClose}
+                                    closeAfterTransition
+                                    BackdropComponent={Backdrop}
+                                    BackdropProps={{
+                                    timeout: 500,
+                                    }}
+                                >
+                                    <Fade in={open}>
+                                    <Box sx={style}>
+                                        <Typography id="transition-modal-title" variant="h6" component="h2">
+                                            Start duty for {booking.patient_name}!
+                                        </Typography>
+                                        <Typography id="transition-modal-description" sx={{ m: 2 }}>
+                                            Are you sure to start duty?
+                                        </Typography>
+                                        
+                                        <Button onClick={startDuty} variant='contained' color='success'>Start duty</Button> {' '}
+                                        <Button onClick={handleClose} variant='outlined'>No</Button>
+                                        
+                                    </Box>
+                                    </Fade>
+                                </Modal>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                    
                     <Box sx={{ m: 2 }}>
                         <Typography variant='p' gutterBottom>
                             Patient name: <b>{booking.patient_name}</b>
@@ -116,6 +181,13 @@ export default function ShowBookingDetail(props) {
                         <Divider />
 
                     </Box>
+                    
+                    {booking.is_duty == false && 
+                        <Box textAlign='right'>
+                            <Button variant='contained' href={route('bookingCancelled', bookedCaregiver.id)} color='error'>Cancel booking</Button>
+                        </Box>
+                    }
+                    
                 </Paper>
             </Container>
         </Authenticated>

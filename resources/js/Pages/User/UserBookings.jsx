@@ -12,7 +12,7 @@ export default function UserBookings(props) {
       <Typography variant='h6'>My Bookings</Typography>
       <Typography variant='overline' gutterBottom>All of your booking made are here.</Typography>
       { userBookings.map(userBooking => (
-        <Card sx={{ display: 'flex', maxWidth: 430, margin: '10px auto' }} key={userBooking.id}>
+        <Card sx={{ display: 'flex', maxWidth: 400, margin: '10px auto' }} key={userBooking.id}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Link href={route('userBookingDetail', userBooking.id)}>
               <CardActionArea>
@@ -25,19 +25,17 @@ export default function UserBookings(props) {
                   <Typography variant="subtitle1" color="text.secondary" component="div">
                     You booked for { userBooking.care } care
                   </Typography>
-                </CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
                   <Typography variant='p' component='div'>See more detail</Typography>
-                </Box>
+                </CardContent>
               </CardActionArea>
             </Link>
           </Box>
           <Link href={route('userBookingDetail', userBooking.id)}>
             <CardMedia
               component="img"
-              sx={{ width: 151 }}
+              sx={{ height: 140 }}
               image={`/images/profiles/${userBooking.caregiver_photo}`}
-              alt=''
+              alt='caregiver photo'
             />
           </Link>
           

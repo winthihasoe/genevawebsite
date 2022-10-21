@@ -16,9 +16,9 @@ export default function UserBookingDetail(props) {
     <UserLayout>
       <Head title='Booking detail' />
       <Container maxWidth='xs'>
-      
-        {isEditing ? (<EditUserBookingDetail userBooking={userBooking} userBookingDetail={userBookingDetail} />) : 
-          (<Paper sx={{ padding: 2}} elevation={10}>
+      <Paper sx={{ padding: 2}} elevation={10}>
+        {isEditing ? (<EditUserBookingDetail userBooking={userBooking} userBookingDetail={userBookingDetail}/>) : 
+          (
             <Box sx={{ border: '2px dotted #000', padding: 3 }}>
               <Grid container>
                 <Grid item md={8} xs={12}>
@@ -124,14 +124,14 @@ export default function UserBookingDetail(props) {
                           <Button variant='contained' color='secondary' onClick={()=>setIsEditing(true)}>Edit</Button>
                       </Box>
                 
-                
-            </Box>
-          
-            <Box sx={{ marginTop: 1}} textAlign='center'>
+                <Box sx={{ marginTop: 1}} textAlign='center'>
               <Typography variant='p' color='secondary'>Thank you for choosing us.</Typography>
             </Box>
-          </Paper>)
+            </Box>  
+          )
         }
+        
+        </Paper>
         
         
       </Container>

@@ -18,7 +18,7 @@ export default function Users(props) {
                 <Box>
                 <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650}} aria-label="caption table">
-                    <caption>All bookings make to Geneva Caregiver Service</caption>
+                    <caption>All User signed to Geneva Caregiver Service</caption>
 
                     {/* Want to make some pagination function for future featuers  */}
 

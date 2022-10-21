@@ -221,7 +221,7 @@ export default function CreateCaregiver(props) {
 
                             <Stack spacing={1}>
                                 <InputLabel id="profile">
-                                    Choose a profile picture
+                                    Choose a caregiver picture
                                 </InputLabel>
                                 <TextField
                                     type="file"
@@ -230,14 +230,7 @@ export default function CreateCaregiver(props) {
                                         setData("image", e.target.files[0])
                                     }
                                 />
-                                {progress && (
-                                    <progress
-                                        value={progress.percentage}
-                                        max="100"
-                                    >
-                                        {progress.percentage}%
-                                    </progress>
-                                )}
+                                
                             </Stack>
                         </Box>
                         <FormGroup>
