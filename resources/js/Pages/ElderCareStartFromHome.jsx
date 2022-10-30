@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "@/Components/Navbar";
-import ElderForm from "@/Components/ElderForm";
 import { Container } from "@mui/system";
 import { Box, createTheme, Typography } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { red } from "@mui/material/colors";
 import { Head } from "@inertiajs/inertia-react";
+import { ElderFormStartFromHome } from "@/Components/ElderFormStartFromHome";
 
 const theme = createTheme({
     palette: {
@@ -15,7 +15,7 @@ const theme = createTheme({
     },
 });
 
-export default function ElderCare() {
+export default function ElderCareStartFromHome() {
     return (
         <>
             <Head title="Booking for elder" />
@@ -31,7 +31,7 @@ export default function ElderCare() {
                     >
                         <Typography variant="h3">Please fill Form</Typography>
                         <Typography variant="overline">We care for your <b>love One</b></Typography>
-                        <ElderForm />
+                        <ElderFormStartFromHome />
                     </Box>
                 </ThemeProvider>
             </Container>

@@ -13,7 +13,7 @@ export default function Users(props) {
             errors={props.errors}
         >
             <Head title="Users" />
-            <Container maxWidth='md'>
+            <Container maxWidth='lg'>
                 <Typography variant="h3" gutterBottom>All Users</Typography>
                 <Box>
                 <TableContainer component={Paper}>

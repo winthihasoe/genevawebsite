@@ -16,12 +16,15 @@ const theme = createTheme({
 });
 
 export default function ChildCare(props) {
+    const bookedCaregiver = props.bookedCaregiver;
+    const city = props.city;
+    const careTopics = props.careTopics;
+
     return (
         <>
             <Head title="Booking for baby" />
             <Navbar />
             <Container maxWidth='xs' sx={{mt: 5}}>
-                <p>caregiver id is {props.id}</p>
                 <ThemeProvider theme={theme}>
                     <Box
                         sx={{
@@ -30,9 +33,10 @@ export default function ChildCare(props) {
                             alignItems: "center",
                         }}
                     >
-                        <Typography variant="h3">Please fill Form</Typography>
+                        <Typography variant="h6">Baby Care</Typography>
                         <Typography variant="overline">We care for your <b>child</b></Typography>
-                        <ChildForm />
+                        <ChildForm bookedCaregiver={bookedCaregiver} city={city} careTopics={careTopics}/>
+                        <Typography variant="overline">Please fill all of your <b>information</b></Typography>
                     </Box>
                 </ThemeProvider>
             </Container>

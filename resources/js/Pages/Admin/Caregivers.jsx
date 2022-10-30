@@ -2,8 +2,8 @@ import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { Box, Typography } from "@mui/material";
-import CaregiverCard from "@/Components/CaregiverCard";
 import { Container } from "@mui/system";
+import CaregiverCardAdmin from "@/Components/CaregiverCardAdmin";
 
 export default function Caregivers(props) {
     return (
@@ -32,7 +32,7 @@ export default function Caregivers(props) {
                 >
                     {props.caregivers.map((caregiver) => (
                         <div className="my-5">
-                            <CaregiverCard caregiver={caregiver} />
+                            <CaregiverCardAdmin caregiver={caregiver} />
                         </div>
                     ))}
                 </Box>

@@ -32,48 +32,22 @@ export class ChildCareTopics extends Component {
                             Check following
                         </FormLabel>
                         <FormGroup>
-                            <FormControlLabel
-                                value="personal_grooming"
+                            {values.careTopics.map(careTopic => (
+                                <FormControlLabel
+                                value={careTopic}
                                 control={
                                     <Checkbox
-                                        checked={values.childCareTopics.includes(
-                                            "personal_grooming"
+                                        checked={values.needs.includes(
+                                            careTopic
                                         )}
                                         onChange={handleCareTopics(
-                                            "childCareTopics"
+                                            "needs"
                                         )}
                                     />
                                 }
-                                label="Personal grooming"
-                            />
-                            <FormControlLabel
-                                value="breastfeeding"
-                                control={
-                                    <Checkbox
-                                        checked={values.childCareTopics.includes(
-                                            "breastfeeding"
-                                        )}
-                                        onChange={handleCareTopics(
-                                            "childCareTopics"
-                                        )}
-                                    />
-                                }
-                                label="Breast Feeding"
-                            />
-                            <FormControlLabel
-                                value="bottle_feeding"
-                                control={
-                                    <Checkbox
-                                        checked={values.childCareTopics.includes(
-                                            "bottle_feeding"
-                                        )}
-                                        onChange={handleCareTopics(
-                                            "childCareTopics"
-                                        )}
-                                    />
-                                }
-                                label="Bottle Feeding"
-                            />
+                                label={careTopic}
+                                />
+                            ))}
                         </FormGroup>
                         <FormHelperText>Be careful</FormHelperText>
                     </FormControl>
@@ -87,11 +61,11 @@ export class ChildCareTopics extends Component {
                         Back
                     </Button>
 
-                    <Button style={styles.button} variant="contained">
-                        <Link href="/child-care/choose-caregiver">
-                            Continue
+                    {values.careTopics[0] && 
+                        <Link href={route('finishBooking', {values})}>
+                           <Button variant="contained" style={styles.button}>Finish</Button>
                         </Link>
-                    </Button>
+                    }
                 </Box>
             </>
         );

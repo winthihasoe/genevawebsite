@@ -29,7 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('/start-child-care', [PageController::class, 'startChildCare'])->name('startChildCare');
     Route::get('/start-elder-care', [PageController::class, 'startElderCare'])->name('startElderCare');
-    Route::get('/child-care/choose-caregiver', [PageController::class, 'chooseCaregiver'])->name('chooseCaregiver');
+    Route::get('/start-elder-care/choose-caregiver', [CaregiverController::class, 'finishBookingAndChooseCaregiver'])->name('finishBookingAndChooseCaregiver');
+    Route::get('/start-elder-care/choose-caregiver/{caregiver}', [CaregiverController::class, 'caregiverStartFromHome'])->name('caregiverStartFromHome');
     Route::get('/user-bookings', [BookingController::class, 'userBookings'])->name('userBookings');
     Route::get('/user-bookings/{id}', [BookingController::class, 'userBookingDetail'])->name('userBookingDetail');
     Route::put('/user-bookings/eidt/{id}', [BookingController::class, 'editUserBookingDetail'])->name('editUserBookingDetail');
@@ -39,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/child-care-training', [PageController::class, 'showChildCareTraining'])->name('showChildCareTraining'); // Start from index page OurTraining component 
 });
 
-// Start from Hero section form
+// ------------------ Start from Hero section form -------------
 Route::get('/show-caregivers', [CaregiverController::class, 'showDesiredCg'])->name('showCaregivers');
 Route::get('/caregiver/{caregiver}', [CaregiverController::class, 'show'])->name('caregiver');
 Route::get('/{id}/booking', [BookingController::class, 'booking'])->name('booking');
@@ -54,6 +55,7 @@ Route::prefix('admin')->middleware(['is_editor'])->group(function(){
     Route::post('/create-caregiver', [CaregiverController::class, 'store']);
     // Route::delete('/caregiver/{id}', [CaregiverController::class, 'destroy'])->name('destroyCaregiver');
     Route::get('/caregivers', [CaregiverController::class, 'index'])->name('caregivers');
+    Route::get('/caregivers/{id}', [CaregiverController::class, 'showCaregiverAdmin'])->name('showCaregiverAdmin');
     Route::get('/add-elder-skills', [ElderCareTopicController::class, 'index'])->name('showElderSkill');
     Route::post('/add-new-elder-skill', [ElderCareTopicController::class, 'store'])->name('addNewElderSkill');
     Route::delete('/delete-elder-skill/{id}', [ElderCareTopicController::class, 'destroy'])->name('destroyElderSkill');
@@ -64,7 +66,8 @@ Route::prefix('admin')->middleware(['is_editor'])->group(function(){
     // ----------- Booking ---------------
     Route::get('/all-bookings', [BookingController::class, 'index'])->name('allBooking');
     Route::get('/booking/{id}', [BookingController::class, 'show'])->name('showBooking');
-    Route::put('/booking-cancelled/{id}', [BookingController::class, 'bookingCancelled'])->name('bookingCancelled');
+    Route::put('/booking/{id}', [BookingController::class, 'editBooking'])->name('editBooking');
+    Route::put('/booking-cancelled/{id}', [BookingController::class, 'bookingCancelled'])->name('bookingCancelled'); // this id is booking.id
     Route::put('/booking-to-duty/{id}', [BookingController::class, 'bookingToDuty'])->name('bookingToDuty');
     
     // ----------- Start Duty ---------------
@@ -73,8 +76,10 @@ Route::prefix('admin')->middleware(['is_editor'])->group(function(){
     // ----------- Cases ---------------
     Route::get('/elder-cases', [DutyController::class, 'elderCases'])->name('elderCases');
     Route::get('/child-cases', [DutyController::class, 'childCases'])->name('childCases');
-
-   
+    Route::get('/elder-cases/{id}', [DutyController::class, 'showElderCaseDetail'])->name('showElderCaseDetail');
+    Route::put('/cases/{id}', [DutyController::class, 'editCase'])->name('editCase');
+    Route::get('/child-cases/{id}', [DutyController::class, 'showChildCaseDetail'])->name('showChildCaseDetail');
+    Route::put('/end-duty/{id}', [DutyController::class, 'endDuty'])->name('endDuty');
 
     // ----------- User Profile ---------------
     Route::get('/edit-profile', [UserController::class, 'editProfileFromAdmin'])->name('editProfileFromAdmin');

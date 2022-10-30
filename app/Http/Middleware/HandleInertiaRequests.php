@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ChildCareTopic;
+use App\Models\ElderCareTopic;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -34,6 +36,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $elderCareTopics = ElderCareTopic::all();
+        $childCareTopics = ChildCareTopic::all();
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user() ? $request->user()->only('id', 'name', 'email', 'phone', 'profile_photo', 'is_admin', 'is_editor') : null,
@@ -42,6 +46,9 @@ class HandleInertiaRequests extends Middleware
                 return (new Ziggy)->toArray();
             },
             'care' =>  $request->care ? $request->care : null,
+            'location' => $request->location ? $request->location: null,
+            'elderCareTopics' => $elderCareTopics,
+            'childCareTopics' => $childCareTopics,
         ]);
     }
 }

@@ -10,10 +10,11 @@ import { Link, usePage } from "@inertiajs/inertia-react";
 export default function CaregiverCard(props) {
     const caregiver = props.caregiver;
     const care = usePage().props.care;
+    const location = usePage().props.location;
     return (
         
             <Card sx={{ width: 160 }} style={{ height: '100%' }}>
-                <Link href={route('caregiver', [caregiver.id, {'care': care}])}>
+                <Link href={route('caregiver', [caregiver.id, {'care': care, 'location': location}])}>
                     <CardActionArea>
                         <Box sx={{height: 140, overflow: 'hidden'}}>
                         <CardMedia
@@ -33,12 +34,13 @@ export default function CaregiverCard(props) {
                         </CardContent>
                     </CardActionArea>
                 </Link>
-
-                <CardActions>
-                    <Button size="small" color="primary">
-                        Show more
-                    </Button>
-                </CardActions>  
+                <Link href={route('caregiver', [caregiver.id, {'care': care, 'location': location}])}>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                            Show Detail
+                        </Button>
+                    </CardActions>
+                </Link>
             </Card>
     );
 }

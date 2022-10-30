@@ -39,7 +39,7 @@ export class ChildAge extends Component {
                         <RadioGroup
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="col-radio-buttons-group"
-                            onChange={handleChange("childAge")}
+                            onChange={handleChange("patientAge")}
                         >
                             <FormControlLabel
                                 value="1"

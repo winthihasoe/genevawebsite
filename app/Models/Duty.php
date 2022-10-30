@@ -11,6 +11,7 @@ class Duty extends Model
 
     protected $fillable = [
         'user_id',
+        'booking_id',
         'patient_name',
         'address',
         'city',
@@ -29,6 +30,7 @@ class Duty extends Model
         'duties',
         'note_to_caregiver',
         'booking_created_at',
+        'is_complete',
     ];
 
     protected $casts = [

@@ -24,7 +24,7 @@ class CaregiverFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'join_date'=>$this->faker->date(),
             'level'=>'skilled', 
-            'care'=>'elder',
+            'care'=>'child',
             'skills' => ['Oxygen therapy', 'Diaper change', 'Personal Hygiene', 'Drip'],
             'image' =>'633bd8ca0a0ae_81166972.jpg',
         ];

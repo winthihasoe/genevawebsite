@@ -6,6 +6,8 @@ use App\Mail\BookingConfirmMail;
 use App\Models\Booking;
 use App\Models\BookingDetail;
 use App\Models\Caregiver;
+use App\Models\ChildCareTopic;
+use App\Models\ElderCareTopic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -28,16 +30,21 @@ class BookingController extends Controller
     {
        
         $care = $request->care;
+        $city = $request->location;
         $bookedCaregiver = Caregiver::find($id);
         if ($care == 'child') {
             // Returning Elder care booking form according to bookedCaregiver and customer need i.e care = "child"
             return Inertia::render('ChildCare' , [
                 'bookedCaregiver' => $bookedCaregiver->only('id', 'name', 'height', 'weight', 'level', 'skills', 'care', 'image'),
+                'city' => $city,
+                'careTopics' => ChildCareTopic::get(),
             ]);
         } else if ($care == 'elder') {
             // Returning Elder care booking form according to bookedCaregiver and customer need i.e care = "elder" 
             return Inertia::render('ElderCare' , [
                 'bookedCaregiver' => $bookedCaregiver->only('id', 'name', 'height', 'weight', 'level', 'skills', 'care', 'image'),
+                'city' => $city,
+                'careTopics' => ElderCareTopic::get(),
             ]);
         } else {
             // Returning a 404 page
@@ -51,7 +58,6 @@ class BookingController extends Controller
         $user_id = auth()->user()->id;
         
         $caregiver_id = $request->id;
-
         //Making Caregiver unavailable for futher booking
         Caregiver::find($caregiver_id)->update(['is_available' => false]);
 
@@ -88,8 +94,8 @@ class BookingController extends Controller
         BookingDetail::create([
             'booking_id' => $booking_id,
             'caregiver_id' => $caregiver_id,
-            'patient_age' => $request->elderAge,
-            'needs' => $request->elderCareTopics,
+            'patient_age' => $request->patientAge,
+            'needs' => $request->needs,
 
             // To solve the level (think that i have to put a TextField in hero section form)
             // But adding caregiver level in the "Recheck Detail" form for remind to customer
@@ -110,7 +116,7 @@ class BookingController extends Controller
     public function finishBooking(Request $request)
     {
         $data = $request->values;
-        return Inertia::render('FinishBooking', [
+    return Inertia::render('FinishBooking', [
             'data' => $data,
         ]);
     }
@@ -120,6 +126,7 @@ class BookingController extends Controller
     {
         $bookingDetail = Booking::find($id)->bookingDetail;
         $bookedCaregiver = Caregiver::find($bookingDetail->caregiver_id);
+        
         return Inertia::render('Admin/ShowBookingDetail', [
             'booking' => Booking::find($id),
             'bookingDetail' => $bookingDetail,
@@ -199,8 +206,51 @@ class BookingController extends Controller
 
     }
 
+    /**
+     * Edit booking detail and update even the booking started or complete
+     */
+    public function editBooking(Request $request, $id)
+    {
+        $updateBooking = Booking::find($id);
+        $updateBookingDetail = Booking::find($id)->bookingDetail;
+
+        $request->validate([
+            'patient_name'=>'required',
+            'patient_age' => 'required',
+            'address'=>'required',
+            'phone'=>'required',
+            'city'=>'required',
+            'start_date'=>'required',
+            'duty'=>'required',
+            'needs'=>'required',
+        ]);
+
+        $updateBookingDetail->update([
+            'needs' => $request->needs,
+            'patient_age' => $request->patient_age,
+            'note_to_caregiver' => $request->note_to_caregiver,
+        ]);
+        
+        $updateBooking->update([
+            'patient_name' => $request->patient_name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'duty' => $request->duty,
+            'is_cancel' => $request->is_cancel,
+            'is_complete' => $request->is_complete,
+        ]);
+        return back()->with('message', 'Booking is updated!');
+    }
+
     public function bookingCancelled($id)
     {
-        //
+        $cancelBooking = Booking::find($id);
+        $cancelBooking->is_cancel = true;
+        $cancelBooking->update();
+        
+        return redirect(route('allBooking'))->with('message', 'Booking cancelled!');
     }
 }

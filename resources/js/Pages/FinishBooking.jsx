@@ -39,9 +39,10 @@ export default function FinishBooking(props) {
 
                       <Divider />
 
-                      <Typography variant='p' gutterBottom>
-                        Patient Age: {data.elderAge}
-                      </Typography>
+                          {data.care == 'elder' ? <Typography variant='p' gutterBottom>Patient Age: {data.patientAge} years</Typography>
+                            :
+                            <Typography variant='p' gutterBottom>Baby Age: {data.patientAge == 1 && '0 - 1 month' } {data.patientAge == 3 && '1 - 3 month' } {data.patientAge == 6 && '3 - 6 month' } {data.patientAge == 12 && '6 - 12 month' } {data.patientAge == 13 && 'more than 1 year' }</Typography>
+                          }
 
                       <Divider />
 
@@ -60,9 +61,10 @@ export default function FinishBooking(props) {
                       {/* Patient's needs  */}
                       <Typography variant='p'>You select the following needs</Typography>
                       <Stack direction="column" spacing={1} sx={{marginBottom:2}}>
-                          {data.elderCareTopics.map(topic=>(
+                          {data.needs?.map(topic=>(
                               <Chip label={topic} />
                           ))}
+                          
                       </Stack>
                       <Divider />
                 </Grid>

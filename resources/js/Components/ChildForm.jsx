@@ -4,17 +4,19 @@ import ChildAge from "./ChildAge";
 import ChildCareTopics from "./ChildCareTopics";
 import Duration from "./Duration";
 
-export class BabyForm extends Component {
+export class ChildForm extends Component {
     state = {
         step: 1,
+        patient_name: "",
         address: "",
-        city: "",
+        city: this.props.city,
         phone: "",
         startDate: null,
         endDate: "",
         dutyAssign: "",
-        childAge: null,
-        childCareTopics: [],
+        patientAge: "",
+        needs: [],
+        care: 'child',
     };
 
     // Proceed to next step
@@ -44,13 +46,13 @@ export class BabyForm extends Component {
 
     // Handling The topics choose by customer
     handleCareTopics = (input) => (e) => {
-        const childCareTopics = this.state.childCareTopics;
-        const index = childCareTopics.indexOf(e.target.value);
+        const needs = this.state.needs;
+        const index = needs.indexOf(e.target.value);
         if (index === -1) {
-            this.setState({ [input]: [...childCareTopics, e.target.value] });
+            this.setState({ [input]: [...needs, e.target.value] });
         } else {
             this.setState({
-                [input]: childCareTopics.filter(
+                [input]: needs.filter(
                     (topic) => topic !== e.target.value
                 ),
             });
@@ -59,27 +61,38 @@ export class BabyForm extends Component {
 
     render() {
         const { step } = this.state;
+        const bookedCaregiver = this.props.bookedCaregiver;
+        const skillTopics = this.props.careTopics;
+        const careTopics = skillTopics.map(topic=>(
+            topic.topic
+        ));
         const {
+            patient_name,
             address,
             city,
             phone,
             startDate,
             endDate,
             dutyAssign,
-            childAge,
-            childCareTopics,
+            patientAge,
+            care,
+            needs,
         } = this.state;
         const values = {
+            ...bookedCaregiver,
+            patient_name,
             address,
             city,
             phone,
             startDate,
             endDate,
             dutyAssign,
-            childAge,
-            childCareTopics,
+            patientAge,
+            needs,
+            careTopics,
+            care
         };
-
+        console.log(values);
         switch (step) {
             case 1:
                 return (
@@ -124,4 +137,4 @@ export class BabyForm extends Component {
     }
 }
 
-export default BabyForm;
+export default ChildForm;

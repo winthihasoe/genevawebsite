@@ -120,9 +120,29 @@ export default function UserBookingDetail(props) {
                       </Box>
 
                     {/* -------------- Submit button ----------------- */}
-                      <Box sx={{ marginTop: 2}} textAlign='center'>
-                          <Button variant='contained' color='secondary' onClick={()=>setIsEditing(true)}>Edit</Button>
-                      </Box>
+                    <Box sx={{ marginTop: 2}} textAlign='center'>
+                        { userBooking.is_duty == false && userBooking.is_complete == false && userBooking.is_cancel == false &&
+                          <Button variant='contained' color='secondary' onClick={()=>setIsEditing(true)}>Edit</Button>    
+                        }
+                        {userBooking.is_duty == true && 
+                          <>
+                          <Chip label='Our service is starting' color='success' variant='contained'/> <br />
+                          <Typography variant='p'>If you want to change any information, please contact to 09970006670.</Typography>
+                          </>
+                        }
+                        {userBooking.is_complete == true && 
+                          <>
+                          <Chip label='Our service is complete' color='success' variant='contained'/> <br />
+                          <Typography variant='p'>Thank you for choosing us and see you next time.</Typography>
+                          </>
+                        }
+                        {userBooking.is_cancel == true && 
+                          <>
+                          <Chip label='Your booking is cancelled'/> <br />
+                          <Typography variant='p'>Sorry for any inconvinence. See you next time.</Typography>
+                          </>
+                        }
+                    </Box>
                 
                 <Box sx={{ marginTop: 1}} textAlign='center'>
               <Typography variant='p' color='secondary'>Thank you for choosing us.</Typography>

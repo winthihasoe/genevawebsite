@@ -29,6 +29,7 @@ import { Stack } from "@mui/system";
 export default function CreateCaregiver(props) {
     const { data, setData, post, progress, errors } = useForm({
         name: "",
+        nrc: "",
         age: "",
         gender: "",
         weight: "",
@@ -113,6 +114,14 @@ export default function CreateCaregiver(props) {
                                 placeholder="Enter a name"
                                 type="text"
                                 value={data.name}
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                label="NRC No."
+                                name="nrc"
+                                placeholder="x/xxxxxx(N)xxxxxx"
+                                type="text"
+                                value={data.nrc}
                                 onChange={handleChange}
                             />
                             <TextField

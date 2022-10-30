@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 
 
 
-export default function Caregiver({caregiver, care}) {
+export default function Caregiver({caregiver, care, location}) {
   
   return (
     <UserLayout>
@@ -66,7 +66,7 @@ export default function Caregiver({caregiver, care}) {
                     </Grid>
                 </Grid>
                 { caregiver.is_available ? <Box sx={{ padding: 2, margin: 2}} textAlign='center'>
-                    <Link href={route('booking',  {'id': caregiver.id,'care': care})} as='button' type='button'>
+                    <Link href={route('booking',  {'id': caregiver.id,'care': care, 'location': location})} as='button' type='button'>
                        Book Now
                     </Link>
                 </Box>: <Box textAlign='center'>Caregiver is on duty is now. You can book when the caregiver is available.</Box> }

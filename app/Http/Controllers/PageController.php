@@ -32,11 +32,6 @@ class PageController extends Controller
         return Inertia::render('ElderCareStartFromHome');
     }
 
-    // Choose caregiver page is followed to child care request form 
-    public function chooseCaregiver () {
-        return Inertia::render('ChooseCaregiver');
-    }
-
     // Start from index page OurTraining component after clicking Elder Care Training
     public function showElderCareTraining()
     {

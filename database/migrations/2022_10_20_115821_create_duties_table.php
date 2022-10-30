@@ -17,6 +17,7 @@ class CreateDutiesTable extends Migration
             $table->id();
             // ------- from bookings table -----------
             $table->foreignId('user_id')->constrained(); // info for who created this duty
+            $table->foreignId('booking_id')->constrained('bookings');
             $table->string('patient_name');
             $table->string('address');
             $table->string('city');

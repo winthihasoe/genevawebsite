@@ -1,0 +1,139 @@
+import React, { Component } from "react";
+import AddressStartFromHome from "./AddressStartFromHome";
+import ElderAge from "./ElderAge";
+import ElderCareTopicsStartFromHome from "./ElderCareTopicsStartFromHome";
+import Duration from "./Duration";
+import { usePage } from "@inertiajs/inertia-react";
+
+export class ElderFormStartFromHome extends Component {
+    
+    state = {
+        step: 1,
+        patient_name: "",
+        address: "",
+        city: "",
+        phone: "",
+        startDate: null,
+        endDate: "",
+        dutyAssign: "",
+        elderAge: "",
+        elderCareTopics: [],
+        care: 'elder',
+    };
+
+    // Proceed to next step
+    nextStep = () => {
+        const { step } = this.state;
+        this.setState({
+            step: step + 1,
+        });
+    };
+    // Go back to prev step
+    prevStep = () => {
+        const { step } = this.state;
+        this.setState({
+            step: step - 1,
+        });
+    };
+
+    // Handle fields change
+    handleChange = (input) => (e) => {
+        this.setState({ [input]: e.target.value });
+    };
+
+    // Handle date change
+    handleDate = (input) => (e) => {
+        this.setState({ [input]: e });
+    };
+
+    // Handling The topics choose by customer
+    handleCareTopics = (input) => (e) => {
+        const elderCareTopics = this.state.elderCareTopics;
+        const index = elderCareTopics.indexOf(e.target.value);
+        if (index === -1) {
+            this.setState({ [input]: [...elderCareTopics, e.target.value] });
+        } else {
+            this.setState({
+                [input]: elderCareTopics.filter(
+                    (topic) => topic !== e.target.value
+                ),
+            });
+        }
+    };
+
+   
+    render() {
+        const { step } = this.state;
+        const bookedCaregiver = this.props.bookedCaregiver;
+        const {      
+            patient_name,
+            address,
+            city,
+            phone,
+            startDate,
+            endDate,
+            dutyAssign,
+            elderAge,
+            elderCareTopics,
+            care,
+        } = this.state;
+        const values = {
+            ...bookedCaregiver,
+            patient_name,
+            address,
+            city,
+            phone,
+            startDate,
+            endDate,
+            dutyAssign,
+            elderAge,
+            elderCareTopics,
+            care
+        };
+        
+        
+        switch (step) {
+            case 1:
+                return (
+                    <AddressStartFromHome
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                );
+            case 2:
+                return (
+                    <Duration
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        handleDate={this.handleDate}
+                        values={values}
+                    />
+                );
+
+            case 3:
+                return (
+                    <ElderAge
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                );
+
+            case 4:
+                return (
+                    <ElderCareTopicsStartFromHome
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        handleCareTopics={this.handleCareTopics}
+                        values={values}
+                    />
+                );
+        }
+    }
+}
+
+export default ElderFormStartFromHome;

@@ -13,8 +13,10 @@ class ElderCareTopicFactory extends Factory
      */
     public function definition()
     {
+        $topics = ['Oxygen therapy', 'Diaper change'];
         return [
-            'topic' => $this->faker->name(),
+            'topic' => $this->foreach($topics),
+            
         ];
     }
 }

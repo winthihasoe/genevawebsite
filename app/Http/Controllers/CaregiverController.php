@@ -60,6 +60,7 @@ class CaregiverController extends Controller
             'name'=>$request->name,
             'nrc'=>$request->nrc,
             'age'=>$request->age,
+            'gender'=>$request->gender,
             'weight'=>$request->weight,
             'height'=>$request->height,
             'address'=>$request->address,
@@ -77,7 +78,9 @@ class CaregiverController extends Controller
         return redirect('/admin/caregivers')->with('message', "Caregiver created sucessfully");
     }
 
-
+    /** Choose caregiver that is continued from Hero section.
+    *   After select a caregiver, user will fill CareForm to continue to finish booking
+    */
     public function showDesiredCg(Request $request)
     {
 
@@ -91,9 +94,35 @@ class CaregiverController extends Controller
         
         return Inertia::render('CaregiverFound', [
             'desiredCaregivers'=> $desiredCaregivers, 'location' => $request->location,
+        ]); 
+    }
+
+    /**
+     * Choose caregiver that is continued from OurServices section 
+     * user is already filled CareForm 
+     * show caregiver according to the user needs
+     */
+    public function finishBookingAndChooseCaregiver(Request $request)
+    {
+
+        // Choosing caregiver according to Location and Field of care from caregiver table
+       
+        $desiredCaregivers = DB::table('caregivers')->where('location', $request->city)->where('care', $request->care)->orWhere('care', 'elder_child')->where('location', $request->city)->get();
+        return Inertia::render('CaregiverFoundStartFromHome', [
+            'desiredCaregivers'=> $desiredCaregivers, 'city' => $request->city, 'values' => $request,
+        ]); 
+
+    }
+
+    /**
+     * Show User selected caregiver
+     */
+    public function caregiverStartFromHome($caregiver, Request $request)
+    {
+        $caregiver = Caregiver::find($caregiver);
+        return Inertia::render('CaregiverStartFromHome', [
+            'caregiver' => $caregiver, 'patient_info' => $request->values,
         ]);
-           
-         
     }
 
     /**
@@ -109,6 +138,18 @@ class CaregiverController extends Controller
         $caregiver = Caregiver::find($caregiver);
        
         return Inertia::render('Caregiver', [
+            'caregiver' => $caregiver, 'care' => $care
+        ]);
+    }
+
+    // Show caregiver information in Admin site
+    public function showCaregiverAdmin($caregiver, Request $request)
+    {
+        $care = $request->care;
+        
+        $caregiver = Caregiver::find($caregiver);
+       
+        return Inertia::render('Admin/CaregiverAdmin', [
             'caregiver' => $caregiver, 'care' => $care
         ]);
     }

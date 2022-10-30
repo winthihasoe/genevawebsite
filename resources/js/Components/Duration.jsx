@@ -89,7 +89,7 @@ export class Duration extends Component {
                 >
                     Back
                 </Button>
-                { values.startDate && values.endDate && values.dutyAssign &&
+                { values.startDate && values.dutyAssign &&
                     <Button
                         style={styles.button}
                         variant="contained"

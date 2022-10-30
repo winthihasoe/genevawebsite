@@ -8,6 +8,7 @@ export class Address extends Component {
     };
     render() {
         const { values, handleChange } = this.props;
+        console.log(values);
         return (
             <Box
                 component="form"
@@ -18,7 +19,8 @@ export class Address extends Component {
             >
                 <div>
                     <TextField
-                        label="Patient Name"
+                        
+                        label={values.care == 'elder' ? "Patient Name" : "Baby Name"} 
                         variant="standard"
                         onChange={handleChange("patient_name")}
                         defaultValue={values.patient_name}
@@ -34,9 +36,8 @@ export class Address extends Component {
                     <TextField
                         label="City"
                         variant="standard"
-                        onChange={handleChange("city")}
-                        defaultValue={values.city}
-                        required
+                        defaultValue={values.city=='mdy' && 'Mandalay' || values.city=='ygn' && 'Yangon' ||  values.city=='mkn' && 'MyitKyiNar'}
+                        disabled
                     />
                     <TextField
                         label="Phone No."
@@ -46,7 +47,7 @@ export class Address extends Component {
                         required
                     />
                 </div>
-                {values.patient_name && values.address && values.city && values.phone && 
+                {values.patient_name && values.address && values.phone && 
                     <Button
                         style={styles.button}
                         variant="contained"

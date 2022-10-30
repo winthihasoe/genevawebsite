@@ -1,6 +1,6 @@
 import UserLayout from '@/Layouts/UserLayout';
 import { Head, Link, usePage } from '@inertiajs/inertia-react'
-import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, Typography } from '@mui/material';
 import React from 'react'
 
 export default function UserBookings(props) {
@@ -25,7 +25,9 @@ export default function UserBookings(props) {
                   <Typography variant="subtitle1" color="text.secondary" component="div">
                     You booked for { userBooking.care } care
                   </Typography>
-                  <Typography variant='p' component='div'>See more detail</Typography>
+                  {userBooking.is_duty == false && userBooking.is_complete == false && userBooking.is_cancel == false ? <Chip label='booking is waiting' size='small' /> : '' } {userBooking.is_duty == true ? <Chip label='booking is started' size='small' color='success' /> : ''}
+                  {userBooking.is_complete == true ? <Chip label='booking is complete' size='small' color='success' /> : ''}
+                  {userBooking.is_cancel == true ? <Chip label='booking is cancelled' size='small' /> : ''}
                 </CardContent>
               </CardActionArea>
             </Link>

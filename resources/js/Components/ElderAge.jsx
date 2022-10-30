@@ -36,7 +36,7 @@ export class ElderAge extends Component {
                         name="age"
                         value={values.elderAge}
                         className="mt-1 block w-full"
-                        onChange={handleChange('elderAge')}
+                        onChange={handleChange('patientAge')}
                         
                     />
                     </FormControl>
@@ -48,7 +48,7 @@ export class ElderAge extends Component {
                 >
                     Back
                 </Button>
-                { values.elderAge && 
+                { values.patientAge && 
                     <Button
                         style={styles.button}
                         variant="contained"

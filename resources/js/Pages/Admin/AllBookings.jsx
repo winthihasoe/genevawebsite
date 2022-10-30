@@ -9,7 +9,6 @@ import { Link } from '@inertiajs/inertia-react';
 export default function AllBookings(props) {
     const bookings = props.bookings;
     const today = new Date();
-    console.log(today.getHours());
     return (
         <Authenticated auth={props.auth} errors={props.errors}>
             <Container maxWidth='lg'>
@@ -22,7 +21,7 @@ export default function AllBookings(props) {
                 <Typography variant='p' gutterBottom><b> Today is { today.toDateString() }. </b></Typography>
                 
                 <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650}} aria-label="caption table">
+                <Table sx={{ minWidth: 700}} aria-label="caption table">
                     <caption>All bookings make to Geneva Caregiver Service</caption>
 
                     {/* Want to make some pagination function for future featuers  */}
@@ -36,7 +35,7 @@ export default function AllBookings(props) {
                             <TableCell align="right">Location</TableCell>
                             <TableCell align="right">Duty</TableCell>
                             <TableCell align='right'>Booking created at</TableCell>
-                            <TableCell align='center'>Duty</TableCell>
+                            <TableCell align='center'>Service</TableCell>
                             <TableCell align='center'>Complete</TableCell>
                         </TableRow>
                     </TableHead>
@@ -55,7 +54,7 @@ export default function AllBookings(props) {
                             <TableCell align="right">{booking.city}</TableCell>
                             <TableCell align="right">{booking.duty}</TableCell>
                             <TableCell align='right'>{booking.booking_created_at}</TableCell>
-                            <TableCell align='center'>{booking.is_duty == false ? <Chip label='Waiting' color='error' /> : <Chip label='Started' variant='outlined' color='success' />}</TableCell>
+                            <TableCell align='center'>{booking.is_duty == false && booking.is_complete == false && booking.is_cancel == false ? <Chip label='Waiting' color='error' /> : ''} {booking.is_duty == true ? <Chip label='Running' color='success' /> : ''} {booking.is_cancel == true ? <Chip label='Cancelled' />: ''} {booking.is_complete == true ? <Chip label='Complete' color='success' /> : ''}</TableCell>
                             <TableCell align='center'>{booking.is_complete == false ? 'No' : 'Yes'}</TableCell>
                         </TableRow>
                     ))}
