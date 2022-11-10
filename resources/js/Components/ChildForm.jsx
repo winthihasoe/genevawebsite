@@ -92,7 +92,7 @@ export class ChildForm extends Component {
             careTopics,
             care
         };
-        console.log(values);
+        
         switch (step) {
             case 1:
                 return (

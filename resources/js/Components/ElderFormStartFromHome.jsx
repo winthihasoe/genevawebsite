@@ -3,7 +3,6 @@ import AddressStartFromHome from "./AddressStartFromHome";
 import ElderAge from "./ElderAge";
 import ElderCareTopicsStartFromHome from "./ElderCareTopicsStartFromHome";
 import Duration from "./Duration";
-import { usePage } from "@inertiajs/inertia-react";
 
 export class ElderFormStartFromHome extends Component {
     
@@ -11,13 +10,13 @@ export class ElderFormStartFromHome extends Component {
         step: 1,
         patient_name: "",
         address: "",
-        city: "",
+        city: '',
         phone: "",
         startDate: null,
         endDate: "",
         dutyAssign: "",
-        elderAge: "",
-        elderCareTopics: [],
+        patientAge: "",
+        needs: [],
         care: 'elder',
     };
 
@@ -48,13 +47,13 @@ export class ElderFormStartFromHome extends Component {
 
     // Handling The topics choose by customer
     handleCareTopics = (input) => (e) => {
-        const elderCareTopics = this.state.elderCareTopics;
-        const index = elderCareTopics.indexOf(e.target.value);
+        const needs = this.state.needs;
+        const index = needs.indexOf(e.target.value);
         if (index === -1) {
-            this.setState({ [input]: [...elderCareTopics, e.target.value] });
+            this.setState({ [input]: [...needs, e.target.value] });
         } else {
             this.setState({
-                [input]: elderCareTopics.filter(
+                [input]: needs.filter(
                     (topic) => topic !== e.target.value
                 ),
             });
@@ -64,7 +63,10 @@ export class ElderFormStartFromHome extends Component {
    
     render() {
         const { step } = this.state;
-        const bookedCaregiver = this.props.bookedCaregiver;
+        const skillTopics = this.props.careTopics;
+        const careTopics = skillTopics.map(topic=>(
+            topic.topic
+        ));
         const {      
             patient_name,
             address,
@@ -73,12 +75,11 @@ export class ElderFormStartFromHome extends Component {
             startDate,
             endDate,
             dutyAssign,
-            elderAge,
-            elderCareTopics,
+            patientAge,
             care,
+            needs,
         } = this.state;
         const values = {
-            ...bookedCaregiver,
             patient_name,
             address,
             city,
@@ -86,8 +87,9 @@ export class ElderFormStartFromHome extends Component {
             startDate,
             endDate,
             dutyAssign,
-            elderAge,
-            elderCareTopics,
+            patientAge,
+            needs,
+            careTopics,
             care
         };
         

@@ -8,7 +8,6 @@ import React from 'react'
 export default function CaregiverFoundStartFromHome(props) {
   const auth = usePage().props.auth;
   const values = props.values;
-  console.log(values);
   return (
     <UserLayout auth={auth}>
       <Head title='Caregiver Found' />

@@ -32,48 +32,22 @@ export class ElderCareTopicsStartFromHome extends Component {
                             Check following
                         </FormLabel>
                         <FormGroup>
-                            <FormControlLabel
-                                value="Personal grooming"
-                                control={
-                                    <Checkbox
-                                        checked={values.elderCareTopics.includes(
-                                            "Personal grooming"
-                                        )}
-                                        onChange={handleCareTopics(
-                                            "elderCareTopics"
-                                        )}
+                            {values.careTopics.map(careTopic => (
+                                    <FormControlLabel
+                                    value={careTopic}
+                                    control={
+                                        <Checkbox
+                                            checked={values.needs.includes(
+                                                careTopic
+                                            )}
+                                            onChange={handleCareTopics(
+                                                "needs"
+                                            )}
+                                        />
+                                    }
+                                    label={careTopic}
                                     />
-                                }
-                                label="Personal grooming"
-                            />
-                            <FormControlLabel
-                                value="Nasal tube feeding"
-                                control={
-                                    <Checkbox
-                                        checked={values.elderCareTopics.includes(
-                                            "Nasal tube feeding"
-                                        )}
-                                        onChange={handleCareTopics(
-                                            "elderCareTopics"
-                                        )}
-                                    />
-                                }
-                                label="Nasal Tube Feeding"
-                            />
-                            <FormControlLabel
-                                value="Bedsore care"
-                                control={
-                                    <Checkbox
-                                        checked={values.elderCareTopics.includes(
-                                            "Bedsore care"
-                                        )}
-                                        onChange={handleCareTopics(
-                                            "elderCareTopics"
-                                        )}
-                                    />
-                                }
-                                label="Bed Sore care"
-                            />
+                            ))}   
                         </FormGroup>
                         <FormHelperText>Be careful</FormHelperText>
                     </FormControl>
@@ -86,13 +60,13 @@ export class ElderCareTopicsStartFromHome extends Component {
                     >
                         Back
                     </Button>
-                    { values.elderCareTopics[0] && 
+                    { values.careTopics[0] && 
                         <Link href={route('finishBookingAndChooseCaregiver', values)}>
                                 <Button variant="contained" style={styles.button}>Finish</Button>
                         </Link>
                     }
                 </Box>
-                <p>This is final step of booking, Thank you.</p>
+                <p>This is final step of booking, you have to choose a caregiver in next step.</p>
             </>
         );
     }

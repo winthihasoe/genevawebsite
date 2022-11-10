@@ -120,6 +120,7 @@ class CaregiverController extends Controller
     public function caregiverStartFromHome($caregiver, Request $request)
     {
         $caregiver = Caregiver::find($caregiver);
+       
         return Inertia::render('CaregiverStartFromHome', [
             'caregiver' => $caregiver, 'patient_info' => $request->values,
         ]);

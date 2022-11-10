@@ -1,10 +1,10 @@
 import EditUserBookingDetail from '@/Components/EditUserBookingDetail';
 import UserLayout from '@/Layouts/UserLayout';
-import { Head } from '@inertiajs/inertia-react';
+import { Head, Link } from '@inertiajs/inertia-react';
 import { Container, Divider, Paper, Typography, Box, Chip, Button, Grid } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react'
-
+import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 
 export default function UserBookingDetail(props) {
   
@@ -16,6 +16,9 @@ export default function UserBookingDetail(props) {
     <UserLayout>
       <Head title='Booking detail' />
       <Container maxWidth='xs'>
+        <Link href={route('userBookings')}>
+            <KeyboardBackspaceRoundedIcon /> <Typography variant='overline'>back</Typography>
+        </Link>
       <Paper sx={{ padding: 2}} elevation={10}>
         {isEditing ? (<EditUserBookingDetail userBooking={userBooking} userBookingDetail={userBookingDetail}/>) : 
           (

@@ -2,6 +2,7 @@ import UserLayout from '@/Layouts/UserLayout';
 import { Head, Link, usePage } from '@inertiajs/inertia-react';
 import { Paper, Typography, Box, Grid, Chip, Divider, Button, Modal } from '@mui/material'
 import React, { useState } from 'react'
+import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 
 
 
@@ -15,6 +16,10 @@ export default function CaregiverStartFromHome({caregiver, patient_info}) {
     <Head title={`${caregiver.name}`} />
         
         <Box maxWidth='md' sx={{ padding: 2, margin: 'auto'}}>
+            <Button onClick={()=>history.back()} >
+                <KeyboardBackspaceRoundedIcon /> <Typography variant='overline'>back</Typography>
+            </Button>
+            
             <Paper elevation={16} sx={{ padding: 5 }}>
                
                 <Typography variant='h6' gutterBottom>

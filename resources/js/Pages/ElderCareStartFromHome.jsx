@@ -15,7 +15,8 @@ const theme = createTheme({
     },
 });
 
-export default function ElderCareStartFromHome() {
+export default function ElderCareStartFromHome(props) {
+    const careTopics = props.careTopics;
     return (
         <>
             <Head title="Booking for elder" />
@@ -31,7 +32,7 @@ export default function ElderCareStartFromHome() {
                     >
                         <Typography variant="h3">Please fill Form</Typography>
                         <Typography variant="overline">We care for your <b>love One</b></Typography>
-                        <ElderFormStartFromHome />
+                        <ElderFormStartFromHome careTopics={careTopics} />
                     </Box>
                 </ThemeProvider>
             </Container>

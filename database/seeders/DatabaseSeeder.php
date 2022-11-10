@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Caregiver::factory()->count(10)->create();
-        ElderCareTopic::factory(2)->create();
+        // ElderCareTopic::factory(2)->create();
     }
 }

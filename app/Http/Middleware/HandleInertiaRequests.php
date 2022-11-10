@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
         $childCareTopics = ChildCareTopic::all();
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user() ? $request->user()->only('id', 'name', 'email', 'phone', 'profile_photo', 'is_admin', 'is_editor') : null,
+                'user' => $request->user() ? $request->user()->only('id', 'name', 'email', 'phone', 'profile_photo', 'is_admin', 'is_editor', 'is_training_class_officer') : null,
             ],
             'ziggy' => function () {
                 return (new Ziggy)->toArray();

@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/inertia-react";
 import { Box, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import AdminPanelSettingsRoundedIcon from '@mui/icons-material/AdminPanelSettingsRounded';
 import SupervisedUserCircleRoundedIcon from '@mui/icons-material/SupervisedUserCircleRounded';
+import CastForEducationRoundedIcon from '@mui/icons-material/CastForEducationRounded';
 
 export default function Users(props) {
     const users = props.users;
@@ -36,7 +37,7 @@ export default function Users(props) {
                     {users.map((user) => (
                             <TableRow key={user.id}>
                                 {/* Showing icon for Admin and Eidtor for easy looking  */}
-                                <TableCell>{user.is_admin == 1 ? <AdminPanelSettingsRoundedIcon /> : ''} {user.is_editor == 1 ? <SupervisedUserCircleRoundedIcon /> : '' }</TableCell>
+                                <TableCell>{user.is_admin == 1 && <AdminPanelSettingsRoundedIcon />} {user.is_editor == 1 && <SupervisedUserCircleRoundedIcon />} {user.is_training_class_officer == 1 && <CastForEducationRoundedIcon />}</TableCell>
                                 <TableCell align="center"><Link href='#'><b>{user.name}</b></Link></TableCell>
                                     
                                 <TableCell align="center">

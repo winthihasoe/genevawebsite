@@ -242,6 +242,15 @@ class BookingController extends Controller
             'is_cancel' => $request->is_cancel,
             'is_complete' => $request->is_complete,
         ]);
+
+        $caregiverAvailable = Caregiver::find($updateBookingDetail->caregiver_id);
+        if($request->is_cancel == false){
+            $caregiverAvailable->is_available = false;
+            $caregiverAvailable->update();
+        }else if($request->is_cancel == true){
+            $caregiverAvailable->is_available = true;
+            $caregiverAvailable->update();
+        }
         return back()->with('message', 'Booking is updated!');
     }
 
@@ -250,7 +259,12 @@ class BookingController extends Controller
         $cancelBooking = Booking::find($id);
         $cancelBooking->is_cancel = true;
         $cancelBooking->update();
-        
+
+        $cancelCaregiver = $cancelBooking->bookingDetail->caregiver_id;
+        $makeCaregiverAvailable = Caregiver::find($cancelCaregiver);
+        $makeCaregiverAvailable->is_available = true;
+        $makeCaregiverAvailable->update();
+
         return redirect(route('allBooking'))->with('message', 'Booking cancelled!');
     }
 }

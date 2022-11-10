@@ -24,6 +24,7 @@ class User extends Authenticatable
         'phone',
         'is_admin',
         'is_customer',
+        'is_training_class_officer',
         'profile_photo',
     ];
 

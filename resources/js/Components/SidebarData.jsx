@@ -11,6 +11,7 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import PermContactCalendarRoundedIcon from '@mui/icons-material/PermContactCalendarRounded';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
+import AltRouteIcon from '@mui/icons-material/AltRoute';
 
 
 
@@ -69,6 +70,11 @@ export const SidebarData = [
         title: "Child Training",
         icon: <AutoAwesomeMosaicIcon />,
         link: "/admin/child-training",
+    },
+    {
+        title: "Branch",
+        icon: <AltRouteIcon />,
+        link: "/admin/branches",
     },
     {
         title: "Report",

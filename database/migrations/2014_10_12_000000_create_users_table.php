@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_customer')->default(true);
             $table->boolean('is_editor')->default(false);
+            $table->boolean('is_training_class_officer')->default(false);
             $table->timestamps();
         });
     }

@@ -1,7 +1,6 @@
 import * as React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head } from "@inertiajs/inertia-react";
-import Box from "@mui/joy/Box";
 import {
     Button,
     Checkbox,
@@ -16,6 +15,7 @@ import {
     TextField,
     Grid,
     FormControl,
+    Box,
 } from "@mui/material";
 import { useForm } from "@inertiajs/inertia-react";
 import {
@@ -73,17 +73,9 @@ export default function CreateCaregiver(props) {
         }
     };
 
-    const handleNewSkill = (e) => {
-        e.preventDefault();
-        post(route('addNewSkill'), data.newSkill);
-        setData({...data, newSkill: ""});
-    }
-
-    console.log(data);
-
     return (
         <Authenticated auth={props.auth} errors={props.errors}>
-            <Head title="Caregivers" />
+            <Head title="Add caregiver" />
             <Container
                 maxWidth='md'
             >
@@ -98,7 +90,7 @@ export default function CreateCaregiver(props) {
                         flexWrap: "wrap",
                     }}
                 >
-                    <form onSubmit={handleSubmit} encType="multipart/form-da?location=mdy&service=elderta">
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <Box
                             sx={{
                                 p: 2,
