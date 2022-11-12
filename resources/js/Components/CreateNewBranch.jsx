@@ -1,20 +1,20 @@
 import { useForm } from '@inertiajs/inertia-react';
-import { Paper, TextField, Typography, Box, Button } from '@mui/material'
+import { Paper, TextField, Typography, Box, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import React, { useState } from 'react'
 
-export default function CreateNewBranch() {
+export default function CreateNewBranch(props) {
+    const trainingOfficers = props.trainingOfficers;
     const { data, setData, post, progress, errors } = useForm({
         // personal information
         branch: "",
         address: "",
         phone: "",
-        officer_name: "",
+        user_id: "",
         trainer_names: [],
         start_date: "",
     });
-
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -27,19 +27,16 @@ export default function CreateNewBranch() {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
         post(route('storeBranch'), data);
         setData({
             branch: "",
             address: "",
             phone: "",
-            officer_name: "",
+            user_id: "",
             trainer_names: [],
             start_date: "",
         })
     };
-
-    console.log(data);
 
   return (
     
@@ -82,14 +79,24 @@ export default function CreateNewBranch() {
                     onChange={handleChange}
                 />
 
-                <TextField
-                    label="Officer"
-                    name="officer_name"
-                    placeholder="Enter officer name"
-                    type="text"
-                    value={data.officer_name}
-                    onChange={handleChange}
-                />
+                {/* This field must change to select type, getting data that is is_training_officer == true and loop through the select */}
+                {/* There is user_id foreign id that will be the id of training officer */}
+                {/* Once again also put the officer name in the officer name column for instant information when the user account is locked or changed */}
+                <FormControl sx={{ minWidth: 230 }}>
+                    <InputLabel id="user_id">Select Officer</InputLabel>
+                    <Select
+                        labelId="user_id"
+                        id="user_id"
+                        value={data.user_id}
+                        label="Select Officer"
+                        name="user_id"
+                        onChange={handleChange}
+                    >
+                        { trainingOfficers.map(officer => (
+                            <MenuItem value={officer.id}>{officer.name}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
 
                 <TextField
                     label="Trainers"
@@ -117,7 +124,9 @@ export default function CreateNewBranch() {
                 <Button variant='contained' color='success' type='submit'>Create</Button>
             </Box>
         </form>
-        
+        <Typography variant='p'>
+           <b>Tip</b>: When choosing "officer name", create a user account first and then an admin will change the role for this account to officer account. So you can find the respective officer name in the officer names list.
+        </Typography>
     </Paper>
    
   )

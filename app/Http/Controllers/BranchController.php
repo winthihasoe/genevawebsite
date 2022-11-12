@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class BranchController extends Controller
 {
     public function index()
     {
+        $trainingOfficers = DB::table('users')->where('is_training_class_officer', true)->get();
         return Inertia::render('Admin/Branches', [
             'branches' => Branch::all(),
+            'trainingOfficers' => $trainingOfficers,
         ]);
     }
 
@@ -22,13 +26,17 @@ class BranchController extends Controller
             'branch'=>'required',
             'address'=>'required',
             'phone'=>'required',
-            'officer_name'=>'required',
-            'start_date'=>'required',         
+            'start_date'=>'required',
+            'user_id' => 'required',     
         ]);
-
-        Branch::create(
-            $request->all()
-        );
+        Branch::create([
+            'user_id' => $request->user_id,
+            'branch'=> $request->branch,
+            'address'=>$request->address,
+            'phone'=>$request->phone,
+            'trainer_names' => $request->trainer_names,
+            'start_date'=>$request->start_date,
+        ]);
 
         return redirect(route('branches'))->with('message', 'New Branch is added');
     }
@@ -37,8 +45,12 @@ class BranchController extends Controller
     public function show($id)
     {
         $showBranch = Branch::find($id);
+        $trainingOfficers = DB::table('users')->where('is_training_class_officer', true)->get();
+        $officer = User::find($showBranch->user_id);
         return Inertia::render('Admin/ShowBranch', [
             'showBranch' => $showBranch,
+            'officer' => $officer,
+            'trainingOfficers' => $trainingOfficers,
         ]);
     }
 
@@ -51,7 +63,7 @@ class BranchController extends Controller
             'branch'=>'required',
             'address'=>'required',
             'phone'=>'required',
-            'officer_name'=>'required',
+            'user_id'=>'required',
             'start_date'=>'required',         
         ]);
 
@@ -59,7 +71,7 @@ class BranchController extends Controller
         $updateBranch->branch = $request->branch;
         $updateBranch->address = $request->address;
         $updateBranch->phone = $request->phone;
-        $updateBranch->officer_name = $request->officer_name;
+        $updateBranch->user_id = $request->user_id;
         $updateBranch->trainer_names = $request->trainer_names;
         $updateBranch->start_date = $request->start_date;
         $updateBranch->update();

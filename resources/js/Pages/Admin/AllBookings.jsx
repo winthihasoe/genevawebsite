@@ -50,7 +50,7 @@ export default function AllBookings(props) {
                                 </Link>
                             </TableCell>
                             <TableCell align="right">{booking.start_date.slice(0, 10)}</TableCell>
-                            <TableCell align="right">{booking.end_date.slice(0, 10)}</TableCell>
+                            <TableCell align="right">{booking.end_date?.slice(0, 10)}</TableCell>
                             <TableCell align="right">{booking.city}</TableCell>
                             <TableCell align="right">{booking.duty}</TableCell>
                             <TableCell align='right'>{booking.booking_created_at}</TableCell>

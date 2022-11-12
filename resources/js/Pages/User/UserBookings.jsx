@@ -9,6 +9,9 @@ export default function UserBookings(props) {
   return (
     <UserLayout auth={auth}>
       <Head title='My Bookings' />
+      { userBookings.length == 0 ? <Typography variant='h3' textAlign="center">You have no booking!</Typography> 
+      :
+      <>
       <Typography variant='h6'>My Bookings</Typography>
       <Typography variant='overline' gutterBottom>All of your booking made are here.</Typography>
       { userBookings.map(userBooking => (
@@ -43,6 +46,8 @@ export default function UserBookings(props) {
           
         </Card>
       ))}
+      </>
+      }
     </UserLayout>
   )
 }

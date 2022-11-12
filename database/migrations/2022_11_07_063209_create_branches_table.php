@@ -19,7 +19,6 @@ class CreateBranchesTable extends Migration
             $table->string('branch');
             $table->text('address');
             $table->string('phone');
-            $table->string('officer_name');
             $table->string('trainer_names')->nullable();
             $table->integer('total_students')->nullable();
             $table->string('start_date');

@@ -108,7 +108,7 @@ export default function EditUserBookingDetail(props) {
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="Start Date"
-                        value={booking.start_date}
+                        value={data.start_date}
                         onChange={handleDate("start_date")}
                         renderInput={(params) => (
                             <TextField variant='standard' {...params} />
@@ -118,7 +118,7 @@ export default function EditUserBookingDetail(props) {
 
                     <DatePicker
                         label="End Date"
-                        value={booking.end_date}
+                        value={data.end_date}
                         onChange={handleDate("end_date")}
                         renderInput={(params) => (
                             <TextField variant='standard' {...params} />

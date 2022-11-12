@@ -44,6 +44,20 @@ export default function CreateCaregiver(props) {
         care: "",
         newSkill: "",
     });
+
+    // For Caregiver profile image
+    const [selectedImage, setSelectedImage] = React.useState([]);
+    const onSelectFile = (e) => {
+        const selectedOneImage = e.target.files[0];
+        const selectedFile = e.target.files;
+        const selectedFileArray = Array.from(selectedFile);
+        const imageArray = selectedFileArray.map(file => {
+            return URL.createObjectURL(file);
+        });
+        setSelectedImage(imageArray);
+        setData({...data, image: selectedOneImage});
+    }
+  
     
     function handleChange(event) {
         const { name, value } = event.target;
@@ -124,7 +138,7 @@ export default function CreateCaregiver(props) {
                                 value={data.age}
                                 onChange={handleChange}
                             />
-                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <FormControl sx={{ minWidth: 230 }}>
                             <InputLabel id="gender">Gender</InputLabel>
                             <Select
                                 labelId="gender"
@@ -175,7 +189,7 @@ export default function CreateCaregiver(props) {
                                 onChange={handleChange}
                             />
                             
-                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <FormControl sx={{ minWidth: 230 }}>
                             <InputLabel id="city">Select City</InputLabel>
                             <Select
                                 labelId="city"
@@ -191,7 +205,7 @@ export default function CreateCaregiver(props) {
                             </Select>
                             </FormControl>
 
-                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <FormControl sx={{ minWidth: 230 }}>
                             <InputLabel id="level">Select Level</InputLabel>
                             <Select
                                 labelId="level"
@@ -217,23 +231,30 @@ export default function CreateCaregiver(props) {
                                     )}
                                 />
                             </LocalizationProvider>
-
-                            {/* Profile Picture  */}
-
-                            <Stack spacing={1}>
-                                <InputLabel id="profile">
-                                    Choose a caregiver picture
-                                </InputLabel>
-                                <TextField
-                                    type="file"
-                                    name="image"
-                                    onChange={(e) =>
-                                        setData("image", e.target.files[0])
-                                    }
-                                />
-                                
-                            </Stack>
+                           
+                            
                         </Box>
+                        {/* Profile Picture  */}
+                        {/* If admin select a photo, Add photo button disappear  */}
+
+                        <Box sx={{ maxWidth: 230 }}>
+                            {selectedImage.length == 1 &&
+                                selectedImage.map((image)=> (
+                                        <Box sx={{ margin: 3 }}>
+                                            <img src={image} alt="elder training photo"/>
+                                            <Button onClick={() => setSelectedImage("")}>Delete image</Button>
+                                        </Box>))
+                                        
+                            }
+                        </Box>
+                            {/* If admin select more than 1 photo, describe the following text  */}
+                        { selectedImage.length > 1 && <div>Please select only one photo</div>}
+                
+                        { selectedImage.length == 1 ? '' :
+                        <label variant='outlined' className='change-photo'>
+                            Select photo
+                            <input className='add-photo-input' type='file' name="images" multiple onChange={onSelectFile} accept="image/png, image/jpeg, image/webp" />
+                        </label>}
                         <FormGroup>
                             <InputLabel id="level">Field of Care</InputLabel>
                             <Select
@@ -349,17 +370,6 @@ export default function CreateCaregiver(props) {
                         </Button>
                     </form>
                 </Box>
-
-                <Divider light />
-                <Box
-                    sx={{
-                        p: 2,
-                        display: "flex",
-                        gap: 2,
-                        alignItems: "center",
-                        flexWrap: "wrap",
-                    }}
-                ></Box>
             </Container>
         </Authenticated>
     );

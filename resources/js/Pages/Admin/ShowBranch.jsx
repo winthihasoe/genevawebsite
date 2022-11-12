@@ -6,6 +6,8 @@ import EditBranch from '@/Components/EditBranch';
 
 export default function ShowBranch(props) {
     const showBranch = props.showBranch;
+    const officer = props.officer;
+    const trainingOfficers = props.trainingOfficers;
     const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -18,7 +20,7 @@ export default function ShowBranch(props) {
                     <Typography variant='h4' gutterBottom><i>Show Branch Detail</i></Typography>
                     <Typography variant='h6' gutterBottom >Branch Name: {showBranch.branch}</Typography>
                     <Divider />
-                    <Typography variant='h6' gutterBottom >Branch Officer: {showBranch.officer_name}</Typography>
+                    <Typography variant='h6' gutterBottom >Branch Officer: {officer.name}</Typography>
                     <Divider />
                     <Typography variant='h6' gutterBottom >Trainers: {showBranch.trainers}</Typography>
                     <Divider />
@@ -34,7 +36,7 @@ export default function ShowBranch(props) {
                 </Box> 
             </Paper>
             :
-            <EditBranch showBranch={showBranch}/>
+            <EditBranch showBranch={showBranch} trainingOfficers={trainingOfficers}/>
             }
         </Container>
     </Authenticated>

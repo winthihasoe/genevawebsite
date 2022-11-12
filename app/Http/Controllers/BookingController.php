@@ -139,7 +139,6 @@ class BookingController extends Controller
     {
         $userId = Auth()->user()->id;
         $userBookings = DB::table('bookings')->where('user_id', $userId)->latest()->get();
-        // $userBookingDetail = Booking::find(4)->bookingDetail;
         // User booking cards will contain caregiver name (Plan to make a collection)
         return Inertia::render('User/UserBookings', [
             'userBookings' => $userBookings,

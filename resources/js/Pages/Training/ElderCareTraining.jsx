@@ -47,9 +47,11 @@ export default function ElderCareTraining(props) {
                                 <Box sx={{ m : 2 }}>
                                     <Typography paragraph>{post.post_body}</Typography>
                                 </Box>
-                                <Box sx={{ m: 2 }}>
-                                    <Chip label={post.post_footer} />
-                                </Box>
+                                {post.post_footer == null ? '' :
+                                    <Box sx={{ m: 2 }}>
+                                        <Chip label={post.post_footer} />
+                                    </Box>
+                                }
                             </Grid>
                             
                         </Grid>

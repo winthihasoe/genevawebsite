@@ -46,4 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * For training branch
+     */
+    public function branch()
+    {
+        return $this->hasOne(Branch::class);
+    }
 }

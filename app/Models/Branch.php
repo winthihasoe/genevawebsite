@@ -18,6 +18,7 @@ class Branch extends Model
         'trainer_names',
         'total_students',
         'start_date',
+        'user_id',
     ];
 
     protected $casts = [

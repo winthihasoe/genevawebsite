@@ -155,7 +155,7 @@ export default function ShowBookingDetail(props) {
                                 <Divider />
 
                                 <Typography variant='p' gutterBottom>
-                                    Booking End Date: {booking.end_date.slice(0, 10)}
+                                    Booking End Date: {booking.end_date?.slice(0, 10)}
                                 </Typography>
 
                                 <Divider />

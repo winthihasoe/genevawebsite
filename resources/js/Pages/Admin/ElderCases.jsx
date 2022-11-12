@@ -1,6 +1,6 @@
 import Authenticated from '@/Layouts/Authenticated';
 import { Link } from '@inertiajs/inertia-react';
-import { Container, Table, Typography, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip } from '@mui/material';
+import { Container, Table, Typography, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Box } from '@mui/material';
 import React from 'react'
 
 export default function ElderCases(props) {

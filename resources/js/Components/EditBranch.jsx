@@ -1,10 +1,11 @@
 import { Link, useForm } from '@inertiajs/inertia-react';
-import { Paper, TextField, Typography, Box, Button } from '@mui/material'
+import { Paper, TextField, Typography, Box, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import React, { useState } from 'react'
 
 export default function EditBranch(props) {
+    const trainingOfficers = props.trainingOfficers;
     const { data, setData, put, progress, errors } = useForm({
         ...props.showBranch
     });
@@ -25,11 +26,7 @@ export default function EditBranch(props) {
         put(route('updateBranch', data.id), data);
         
     };
-
     
-
-    console.log(data);
-
   return (
     
     <Paper elevation={10} sx={{ p: 2, mt: 1 }} >
@@ -71,15 +68,21 @@ export default function EditBranch(props) {
                     onChange={handleChange}
                 />
 
-                <TextField
-                    label="Officer"
-                    name="officer_name"
-                    placeholder="Enter officer name"
-                    type="text"
-                    value={data.officer_name}
-                    onChange={handleChange}
-                />
-
+                <FormControl sx={{ minWidth: 230 }}>
+                    <InputLabel id="user_id">Select Officer</InputLabel>
+                    <Select
+                        labelId="user_id"
+                        id="user_id"
+                        value={data.user_id}
+                        label="Select Officer"
+                        name="user_id"
+                        onChange={handleChange}
+                    >
+                        { trainingOfficers.map(officer => (
+                            <MenuItem value={officer.id}>{officer.name}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
                 <TextField
                     label="Trainers"
                     name="trainer_names"
