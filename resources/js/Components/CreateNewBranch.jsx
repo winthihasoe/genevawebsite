@@ -33,7 +33,7 @@ export default function CreateNewBranch(props) {
             address: "",
             phone: "",
             user_id: "",
-            trainer_names: [],
+            trainer_names: '',
             start_date: "",
         })
     };

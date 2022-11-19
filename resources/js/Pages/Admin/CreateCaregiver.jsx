@@ -22,7 +22,7 @@ import {
     DatePicker,
     LocalizationProvider,
 } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Stack } from "@mui/system";
 
 
@@ -42,7 +42,6 @@ export default function CreateCaregiver(props) {
         image: null,
         location: "",
         care: "",
-        newSkill: "",
     });
 
     // For Caregiver profile image
@@ -221,7 +220,7 @@ export default function CreateCaregiver(props) {
                             </Select>
                             </FormControl>
 
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
                                     label="Joined Date"
                                     value={data.join_date}

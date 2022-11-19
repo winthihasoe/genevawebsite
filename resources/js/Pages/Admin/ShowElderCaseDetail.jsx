@@ -122,7 +122,7 @@ export default function ShowElderCaseDetail(props) {
                             <Typography variant='p'><b>{caseDetail.patient_name}</b> selected the following needs</Typography>
                             <Box sx={{margin: 1}}>
                                 {caseDetail.needs.map(topic=>(
-                                    <Box sx={{p:1, display: 'inline-block'}}>
+                                    <Box sx={{p:1, display: 'inline-block'}} key={topic}>
                                     <Chip label={topic} />
                                     </Box>
                                 ))}

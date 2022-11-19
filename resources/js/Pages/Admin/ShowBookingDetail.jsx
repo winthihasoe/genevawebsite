@@ -69,7 +69,10 @@ export default function ShowBookingDetail(props) {
                             <Grid container>
                                 <Grid item md={6} xs={12}>
                                     <Typography variant='h4' gutterBottom> 
-                                        Booking Detail <Button variant='outlined' color='success' onClick={()=>setIsEditing(true)}>Edit booking</Button>
+                                        Booking Detail{" "}
+                                        { booking.is_complete == true ? '' : 
+                                        <Button variant='outlined' color='success' onClick={()=>setIsEditing(true)}>Edit booking</Button>
+                                        }
                                     </Typography>
                                 </Grid>
                                 <Grid item md={6} xs={12}>
@@ -132,7 +135,7 @@ export default function ShowBookingDetail(props) {
                                 <Typography variant='p'><b>{booking.patient_name}</b> selected the following needs</Typography>
                                 <Box sx={{margin: 1}}>
                                     {bookingDetail.needs.map(topic=>(
-                                        <Box sx={{p:1, display: 'inline-block'}}>
+                                        <Box sx={{p:1, display: 'inline-block'}} key={topic}>
                                         <Chip label={topic} />
                                         </Box>
                                     ))}
@@ -192,7 +195,7 @@ export default function ShowBookingDetail(props) {
                                 <Typography variant='p'><b>{bookedCaregiver.name}</b>  can do the following skills</Typography>
                                 <Box sx={{margin: 1}}>
                                     {bookedCaregiver.skills.map(topic=>(
-                                        <Box sx={{p:1, display: 'inline-block'}}>
+                                        <Box sx={{p:1, display: 'inline-block'}} key={topic}>
                                         <Chip label={topic} />
                                         </Box>
                                     ))}
@@ -201,11 +204,10 @@ export default function ShowBookingDetail(props) {
 
                             </Box>
                             
-                            {booking.is_duty == false && 
                                 <Box textAlign='right'>
                                     {booking.is_duty == false && booking.is_complete == false && booking.is_cancel == false && <Button variant='contained' onClick={handleOpenCancel} color='error'>Cancel booking</Button>}
-                                    { booking.is_duty == true ? 
-                                        <Chip label='This booking is on duty' />  : ''   
+                                    { booking.is_duty == true &&
+                                        <Chip label='This booking is on duty' />  
                                     }
                                     { booking.is_complete == true ? 
                                         <Chip label='This booking is complete' />  : ''   
@@ -240,7 +242,7 @@ export default function ShowBookingDetail(props) {
                                             </Fade>
                                         </Modal>
                                 </Box>
-                            }
+                            
                         </>
                     }
                 </Paper>

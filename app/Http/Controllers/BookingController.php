@@ -62,7 +62,7 @@ class BookingController extends Controller
         Caregiver::find($caregiver_id)->update(['is_available' => false]);
 
         $caregiver_photo = Caregiver::find($caregiver_id)->image;
-        // dd($caregiver_photo);
+        dd($caregiver_photo);
 
         Booking::create([
             'user_id'=>$user_id,

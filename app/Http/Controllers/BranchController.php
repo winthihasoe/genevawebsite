@@ -64,7 +64,7 @@ class BranchController extends Controller
             'address'=>'required',
             'phone'=>'required',
             'user_id'=>'required',
-            'start_date'=>'required',         
+            'start_date'=>'required',       
         ]);
 
         $updateBranch = Branch::find($id);

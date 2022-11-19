@@ -20,8 +20,8 @@ class CreateBookingsTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('phone');
-            $table->string('start_date');
-            $table->string('end_date')->nullable();
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->string('care');
             $table->string('duty');
             $table->string('caregiver_photo')->nullable();

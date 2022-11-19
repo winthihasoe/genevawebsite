@@ -26,7 +26,7 @@ export default function EditBranch(props) {
         put(route('updateBranch', data.id), data);
         
     };
-    
+    console.log(data);
   return (
     
     <Paper elevation={10} sx={{ p: 2, mt: 1 }} >

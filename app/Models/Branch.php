@@ -21,7 +21,5 @@ class Branch extends Model
         'user_id',
     ];
 
-    protected $casts = [
-        'trainer_names' => 'array'
-    ];
+    
 }

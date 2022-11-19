@@ -22,7 +22,7 @@ export default function ShowBranch(props) {
                     <Divider />
                     <Typography variant='h6' gutterBottom >Branch Officer: {officer.name}</Typography>
                     <Divider />
-                    <Typography variant='h6' gutterBottom >Trainers: {showBranch.trainers}</Typography>
+                    <Typography variant='h6' gutterBottom >Trainers: {showBranch.trainer_names}</Typography>
                     <Divider />
                     <Typography variant='h6' gutterBottom >Address: {showBranch.address}</Typography>
                     <Divider />

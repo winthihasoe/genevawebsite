@@ -10,7 +10,7 @@ import {
     Typography,
 } from "@mui/material";
 import React, { Component } from "react";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 
@@ -34,7 +34,7 @@ export class Duration extends Component {
                 textAlign='center'
             >
                 <Typography variant="h6" textAlign='center'>When do you need care?</Typography>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <Box textAlign='center'>
                         <MobileDatePicker
                             label="Starting Date"

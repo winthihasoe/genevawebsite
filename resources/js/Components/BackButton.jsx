@@ -5,7 +5,6 @@ import { Typography } from '@mui/material';
 
 export default function BackButton(props) {
     const name = props.name;
-    console.log(name);
   return (
     <Link href={route(name)}>
         <KeyboardBackspaceRoundedIcon /> <Typography variant='overline'>back</Typography>
